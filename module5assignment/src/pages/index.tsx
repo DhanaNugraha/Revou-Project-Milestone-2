@@ -1,28 +1,28 @@
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import ProductListing from "@/components/ProductListing";
+import { GetStaticProps } from "next";
 
-const ProductCategory = () => {
+// Server Side 
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch("https://api.escuelajs.co/api/v1/categories/");
+  const data = await response.json();
+  return {
+    props: {
+      data,
+    },
+  };
+};
+
+// client side 
+const ProductCategory = ({data}:any) => {
   const [categoryFetched, setCategoryFetched] = useState([]);
   const [categoryId, setCategoryId] = useState(1);
 
   useEffect(() => {
-    fetchCategory();
-  }, []);
-
-  const fetchCategory = async () => {
-    try {
-      const response = await fetch(
-        "https://api.escuelajs.co/api/v1/categories/"
-      );
-      const data = await response.json();
-
-      setCategoryFetched(data.slice(0,5));
-      setCategoryId(data.slice(0)[0].id)
-    } catch (error) {
-      console.error("Error fetching Category:", error);
-    }
-  };
+    setCategoryFetched(data.slice(0,5));
+    setCategoryId(data.slice(0)[0].id)
+  }, [])
 
   const handleClickCategory = (event:any) => {
     setCategoryId(Number(event.target.id))
