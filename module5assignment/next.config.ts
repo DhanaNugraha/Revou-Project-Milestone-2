@@ -9,7 +9,10 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        hostname: 'i.imgur.com',
+        hostname:'media.istockphoto.com'
+      },
+      {
+        hostname: "i.imgur.com"
       },
     ],
   },

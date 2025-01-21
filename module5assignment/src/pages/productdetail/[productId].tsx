@@ -5,12 +5,16 @@ import { addToCart } from "@/hooks/useCart";
 const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [productFetched, setProductFetched] = useState<any>({});
-  const [imageFetched, setImageFetched] = useState<any>([
-    "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
-  ]);
+
+  const placeholderImg = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+
+  const [imageFetched, setImageFetched] = useState<any>([placeholderImg]);
+
   const [displayImageNum, setDisplayImageNum] = useState(0);
+
   const router = useRouter();
 
+  
   useEffect(() => {
     fetchProduct();
   }, []);
@@ -23,10 +27,11 @@ const ProductDetail = () => {
         `https://api.escuelajs.co/api/v1/products/${productId}`
       );
       const data = await response.json();
-      console.log(data);
+
       setProductFetched(data);
       setImageFetched(data.images);
       setIsLoading(false);
+
     } catch (error) {
       console.error("Error fetching product:", error);
     }
@@ -53,7 +58,6 @@ const ProductDetail = () => {
       }
     }
 
-    // console.log(displayImageNum)
   };
 
   return (
@@ -62,7 +66,7 @@ const ProductDetail = () => {
 
       <section className="productDetailImgContainer">
         <img
-          src={imageFetched[displayImageNum]}
+          src={imageFetched[displayImageNum]? imageFetched[displayImageNum]: placeholderImg}
           className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
         />
         <article className="productDetailImgButtonContainer">

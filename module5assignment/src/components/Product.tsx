@@ -7,6 +7,8 @@ const Product = ({product}: any) => {
     const router = useRouter();
     const token = localStorage.getItem("access_token");
 
+    const placeholderImg = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+
     const onAddToCart = () => {
         if (token) {
             addToCart(product);
@@ -21,7 +23,7 @@ const Product = ({product}: any) => {
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
                 <Image 
-                    src={product.images[1]}
+                    src={product.images[1]? product.images[1]: placeholderImg}
                     alt={product.title}
                     width={200}
                     height={200}
