@@ -10,8 +10,9 @@ const ShoppingCart = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    const cart = localStorage.getItem("cart")
-    setCart(JSON.parse(cart!))
+    localStorage.getItem("cart")
+    ? setCart(JSON.parse(localStorage.getItem("cart")!))
+    : setCart([]);
   },[])
 
   useEffect(() => {
