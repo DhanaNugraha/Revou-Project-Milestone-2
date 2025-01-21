@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState,useEffect } from "react";
+import Image from "next/image";
 
 const Product = ({product, dispatch, REDUCER_ACTIONS}: any) => {
     const router = useRouter();
@@ -19,7 +19,14 @@ const Product = ({product, dispatch, REDUCER_ACTIONS}: any) => {
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
-                <img src={product.images[1]} alt={product.title} className="productListingImg"/>
+                <Image 
+                    src={product.images[1]}
+                    alt={product.title}
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                    className="productListingImg"
+                />
                 <h4 className={"w-[fit-content]"}>
                     {product.title}
                 </h4>

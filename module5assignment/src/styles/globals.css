@@ -99,6 +99,8 @@ h1 {
   gap: 1rem;
   flex-flow: row wrap;
   justify-content: center;
+  margin-left: 2%;
+  margin-right: 2%;
   /* justify-content: space-between */
 }
 
@@ -283,12 +285,12 @@ h1 {
 
 @media screen and (min-width: 420px){
   .productListing {
-    width: 46%
+    width: 46%;
   }}
 
 @media screen and (min-width: 601px){
   .productListing {
-    width: 30%
+    width: 30%;
   }}
 
 
