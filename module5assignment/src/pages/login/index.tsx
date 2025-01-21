@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import LoginRegisterForm from "@/components/LoginRegisterForm";
+import NavBar from "@/components/NavBar";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -43,14 +44,17 @@ const Login = () => {
     };
 
     return (
-        <LoginRegisterForm
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            onSubmit={handleLoginSubmit}
-            formType = "Login"
-        />
+        <>
+            <NavBar />
+            <LoginRegisterForm
+                email={email}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                onSubmit={handleLoginSubmit}
+                formType = "Login"
+            />
+        </>
     );
 };
 
