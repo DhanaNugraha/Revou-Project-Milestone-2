@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CartItems from "@/components/CartItems";
 import NavBar from "@/components/NavBar";
-import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCart, RemoveFromCart } from "@/hooks/useCart";
+import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCart, RemoveFromCart, SortCart } from "@/hooks/useCart";
 
 const ShoppingCart = () => {
   const [confirm, setConfirm] = useState(false);
@@ -23,26 +23,22 @@ const ShoppingCart = () => {
   const onSubmitOrder = () => {
     SubmitCart();
     setConfirm(true);
-    const cart = localStorage.getItem("cart")
-    setCart(JSON.parse(cart!));
+    setCart(SortCart());
   };
 
   const onRemoveFromCart = (item:any) => {
     RemoveFromCart(item);
-    const cart = localStorage.getItem("cart")
-    setCart(JSON.parse(cart!));
+    setCart(SortCart());
   };
 
   const onAddToCart = (item:any) => {
     addToCart(item);
-    const cart = localStorage.getItem("cart")
-    setCart(JSON.parse(cart!));
+    setCart(SortCart());
   };
 
   const onSubstractFromCart = (item:any) => {
     SubstractFromCart(item);
-    const cart = localStorage.getItem("cart")
-    setCart(JSON.parse(cart!));
+    setCart(SortCart());
   };
 
   const pageContentTernary = confirm ? (

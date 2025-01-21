@@ -144,3 +144,23 @@ export const TotalCartPrice = () => {
     }
 }
 
+
+export const SortCart = () => {
+    const cartExist = localStorage.getItem("cart")? true : false;
+    
+    if (cartExist) {
+        // fetch and parse cart from local storage   
+        const cart = localStorage.getItem("cart");
+        const cartParse = JSON.parse(cart!);
+
+        const sortedCart = cartParse.sort((a: any, b: any) => {
+            const itemA = Number(a.id)
+            const itemB = Number(b.id)
+            return itemA - itemB
+        })
+        return sortedCart
+    }
+    else {
+        []
+    }
+}
