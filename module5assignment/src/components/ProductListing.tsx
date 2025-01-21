@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
-import useCart from "@/hooks/useCart";
 import Product from "./Product";
 
 const ProductListing = ({ categoryId }: any) => {
   const [productFetched, setProductFetched] = useState<any>([]);
-  const {dispatch, REDUCER_ACTIONS} = useCart()
-
 
   useEffect(() => {
     fetchProduct();
@@ -32,8 +29,6 @@ const ProductListing = ({ categoryId }: any) => {
             <Product 
                 key={product.id} 
                 product = {product} 
-                dispatch = {dispatch}
-                REDUCER_ACTIONS = {REDUCER_ACTIONS}
             />
         )
     })

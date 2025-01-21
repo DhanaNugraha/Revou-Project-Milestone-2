@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useCart from "@/hooks/useCart";
 import { useRouter } from "next/router";
+import { addToCart } from "@/hooks/useCart";
 
 const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,7 +8,6 @@ const ProductDetail = () => {
   const [imageFetched, setImageFetched] = useState<any>([
     "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
   ]);
-  const { dispatch, REDUCER_ACTIONS } = useCart();
   const [displayImageNum, setDisplayImageNum] = useState(0);
   const router = useRouter();
 
@@ -34,10 +33,7 @@ const ProductDetail = () => {
   };
 
   const onAddToCart = () => {
-    dispatch({
-      type: REDUCER_ACTIONS.ADD,
-      payload: { ...productFetched, qty: 1 },
-    });
+    addToCart(productFetched);
     alert("Item added to cart");
   };
 

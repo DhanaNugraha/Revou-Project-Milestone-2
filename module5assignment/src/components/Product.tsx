@@ -1,21 +1,22 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { addToCart } from "@/hooks/useCart";
 
-const Product = ({product, dispatch, REDUCER_ACTIONS}: any) => {
+const Product = ({product}: any) => {
     const router = useRouter();
     const token = localStorage.getItem("access_token");
 
     const onAddToCart = () => {
         if (token) {
-            dispatch({type: REDUCER_ACTIONS.ADD, payload: {...product, qty:1}})
+            addToCart(product);
             alert("Item added to cart") 
         } else {
             router.push("/login") 
             alert("Please log in to add item to cart") 
         }
     }
-    
+
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
