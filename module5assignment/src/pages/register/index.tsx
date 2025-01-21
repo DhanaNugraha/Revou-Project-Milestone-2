@@ -27,7 +27,6 @@ const Register = () => {
           }
         );
         if (response.ok){
-          console.log("here")
 
           const response = await fetch(
             "https://api.escuelajs.co/api/v1/auth/login",
@@ -44,8 +43,6 @@ const Register = () => {
           );
 
           const data = await response.json();
-
-          // console.log("data", data)
 
           data.access_token
           ?  localStorage.setItem("access_token", data.access_token)
