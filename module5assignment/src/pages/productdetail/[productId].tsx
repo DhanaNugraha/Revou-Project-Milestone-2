@@ -89,6 +89,7 @@ const ProductDetail = () => {
           <img
             src={imageFetched[displayImageNum]? imageFetched[displayImageNum]: placeholderImg}
             className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
+            alt={productFetched.title? productFetched.title: "Product"}
           />
           <article className="productDetailImgButtonContainer">
             <button onClick={() => onImgButtonClick("left")}>←</button>
