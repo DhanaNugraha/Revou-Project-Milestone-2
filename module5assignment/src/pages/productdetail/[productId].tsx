@@ -31,7 +31,7 @@ const ProductDetail = () => {
     try {
 
       // make a placeholder value for initial render
-      const productId = router.query.productId? router.query.productId : 2;
+      const productId = router.query.productId? router.query.productId : 10;
 
       const response = await fetch(
         `https://api.escuelajs.co/api/v1/products/${productId}`
@@ -80,7 +80,7 @@ const ProductDetail = () => {
     }
   }
 
-  
+
   return (
     <>
       <Head>
