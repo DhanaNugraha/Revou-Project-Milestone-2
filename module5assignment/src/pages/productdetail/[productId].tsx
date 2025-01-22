@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { addToCart } from "@/hooks/useCart";
+import NavBar from "@/components/NavBar";
 
 const ProductDetail = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [productFetched, setProductFetched] = useState<any>({});
 
   const placeholderImg = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
@@ -14,15 +15,17 @@ const ProductDetail = () => {
 
   const router = useRouter();
 
-  
+  // will run twice, first render and when ready
   useEffect(() => {
     fetchProduct();
-  }, []);
+  }, [router.isReady]);
 
   const fetchProduct = async () => {
     try {
-      const productId = router.query.productId;
-      setIsLoading(true);
+
+      // make a placeholder value for initial render
+      const productId = router.query.productId? router.query.productId : 2;
+
       const response = await fetch(
         `https://api.escuelajs.co/api/v1/products/${productId}`
       );
@@ -61,34 +64,37 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="productDetailContainer">
-      {isLoading ? <p>Loading...</p> : null}
+    <>
+      <NavBar />
+      <div className="productDetailContainer">
+        {isLoading ? <p>Loading...</p> : null}
 
-      <section className="productDetailImgContainer">
-        <img
-          src={imageFetched[displayImageNum]? imageFetched[displayImageNum]: placeholderImg}
-          className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
-        />
-        <article className="productDetailImgButtonContainer">
-          <button onClick={() => onImgButtonClick("left")}>←</button>
-          <button onClick={() => onImgButtonClick("right")}>→</button>
-        </article>
-      </section>
+        <section className="productDetailImgContainer">
+          <img
+            src={imageFetched[displayImageNum]? imageFetched[displayImageNum]: placeholderImg}
+            className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
+          />
+          <article className="productDetailImgButtonContainer">
+            <button onClick={() => onImgButtonClick("left")}>←</button>
+            <button onClick={() => onImgButtonClick("right")}>→</button>
+          </article>
+        </section>
 
-      <section className="productDetailTextContainer">
-        <h1>{productFetched.title}</h1>
-        <p>{productFetched.description}</p>
-      </section>
+        <section className="productDetailTextContainer">
+          <h1>{productFetched.title}</h1>
+          <p>{productFetched.description}</p>
+        </section>
 
-      <p>Price: ${productFetched.price}</p>
+        <p>Price: ${productFetched.price}</p>
 
-      <button
-        className="border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
-        onClick={onAddToCart}
-      >
-        Add to Cart
-      </button>
-    </div>
+        <button
+          className="border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
+          onClick={onAddToCart}
+        >
+          Add to Cart
+        </button>
+      </div>
+    </>
   );
 };
 
