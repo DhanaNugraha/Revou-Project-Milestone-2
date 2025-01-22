@@ -65,7 +65,7 @@ const Register = () => {
 
       } catch (error:any) {
         console.error("Unable to crate account:", error.message);
-        alert(`Unable to crate account: ${error.message}`)
+        alert(`Unable to create account: ${error.message}`)
       }
   }
 

@@ -43,7 +43,7 @@ const Login = () => {
 
         } finally {
             if (localStorage.getItem("access_token")) {
-                alert("You have successfully logged in!");
+                // alert("You have successfully logged in!");
                 router.push("/");
             } 
         }
