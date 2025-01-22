@@ -87,12 +87,21 @@ h1 {
 
 }
 
+
+/* Form */
 .formFill {
   padding-bottom: 0.4em;
   width: 280px;
   display: flex;
   justify-content: space-between;
 }
+
+#email, #password {
+  background: #242424;
+}
+
+
+/* Product listing */
 
 .productListingContainer {
   display: flex;
