@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { addToCart } from "@/hooks/useCart";
 import NavBar from "@/components/NavBar";
+import Head from "next/head";
 
 const ProductDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +15,11 @@ const ProductDetail = () => {
   const [displayImageNum, setDisplayImageNum] = useState(0);
 
   const router = useRouter();
+
+  // ternary to prevent undefined
+  const metaKeyword = productFetched.title
+  ? `${productFetched.title}, ${productFetched.title.split(" ").join(", ")}, Shop Free, Product, Details, Product Details`
+  : "Shop Free, Product, Details, Product Details";
 
   // will run twice, first render and when ready
   useEffect(() => {
@@ -65,6 +71,16 @@ const ProductDetail = () => {
 
   return (
     <>
+      <Head>
+          <meta charSet="UTF-8" />
+          <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="description" content={productFetched.description} />
+          <meta name="keyword" content={metaKeyword} />
+          <meta name="author" content="Dhana Nugraha" />
+          <title>Shop Free: {productFetched.title}</title>
+      </Head>
+
       <NavBar />
       <div className="productDetailContainer">
         {isLoading ? <p>Loading...</p> : null}

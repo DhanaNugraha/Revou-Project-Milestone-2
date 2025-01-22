@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import ProductListing from "@/components/ProductListing";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 // Server Side 
 export const getStaticProps: GetStaticProps = async () => {
@@ -40,9 +41,20 @@ const ProductCategory = ({data}:any) => {
       return CategoryStyling
     }
   }
+  
 
   return (
     <>
+      <Head>
+        <meta charSet="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Shop Free home page. Find your favorite products here." />
+        <meta name="keyword" content={categoryFetched.map((category: any) => category.name).join(", ")} />
+        <meta name="author" content="Dhana Nugraha" />
+        <title>Shop Free: Home</title>
+      </Head>
+
       <NavBar />
 
       <ul className="flex justify-around pt-[2%] pb-[4%]">

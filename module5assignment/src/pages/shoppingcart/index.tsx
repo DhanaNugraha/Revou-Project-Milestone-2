@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CartItems from "@/components/CartItems";
 import NavBar from "@/components/NavBar";
 import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCart, RemoveFromCart, SortCart } from "@/hooks/useCart";
+import Head from "next/head";
 
 const ShoppingCart = () => {
   const [confirm, setConfirm] = useState(false);
@@ -75,6 +76,16 @@ const ShoppingCart = () => {
 
   return (
     <>
+      <Head>
+          <meta charSet="UTF-8" />
+          <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="description" content="Shop Free Cart page. You can view your cart here." />
+          <meta name="keyword" content="Shop Free, Cart" />
+          <meta name="author" content="Dhana Nugraha" />
+          <title>Shop Free: Cart</title>
+      </Head>
+
       <NavBar />
 
       <main className="main mainCart">{pageContentTernary}</main>

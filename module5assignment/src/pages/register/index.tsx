@@ -2,6 +2,7 @@ import { useState} from "react";
 import { useRouter } from "next/router";
 import LoginRegisterForm from "@/components/LoginRegisterForm";
 import NavBar from "@/components/NavBar";
+import Head from "next/head";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -63,6 +64,16 @@ const Register = () => {
 
   return (
     <>
+      <Head>
+          <meta charSet="UTF-8" />
+          <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <meta name="description" content="Shop Free Sign Up page. Find your favorite products here." />
+          <meta name="keyword" content="Shop Free, Signup, Register" />
+          <meta name="author" content="Dhana Nugraha" />
+          <title>Shop Free: Sign Up</title>
+      </Head>
+
       <NavBar />
       <LoginRegisterForm
         email={email}
