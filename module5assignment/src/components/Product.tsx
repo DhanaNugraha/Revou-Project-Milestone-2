@@ -18,12 +18,24 @@ const Product = ({product}: any) => {
             alert("Please log in to add item to cart") 
         }
     }
+    // console.log(typeof(product.images[1]), product.images[1])
+
+    // check if image starts with (http:// or https://)
+    const imageChecker = (productImage: any) => {
+        if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
+            return productImage
+        }
+        else {
+            return placeholderImg
+        }
+    }
 
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
                 <Image 
-                    src={product.images[1]? product.images[1]: placeholderImg}
+                    // send non undefined value to function imgChecker
+                    src={imageChecker(product.images[1]? product.images[1] : placeholderImg)}
                     alt={product.title}
                     width={200}
                     height={200}
