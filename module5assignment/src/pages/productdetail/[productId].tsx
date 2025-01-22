@@ -70,6 +70,17 @@ const ProductDetail = () => {
 
   };
 
+  // check if image starts with (http:// or https://)
+  const imageChecker = (productImage: any) => {
+    if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
+        return productImage
+    }
+    else {
+        return placeholderImg
+    }
+  }
+
+
   return (
     <>
       <Head>
@@ -88,7 +99,7 @@ const ProductDetail = () => {
 
         <section className="productDetailImgContainer">
           <img
-            src={imageFetched[displayImageNum]? imageFetched[displayImageNum]: placeholderImg}
+            src={imageChecker(imageFetched[displayImageNum])}
             className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
             alt={productFetched.title? productFetched.title: "Product"}
           />

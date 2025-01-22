@@ -18,7 +18,7 @@ const Product = ({product}: any) => {
             alert("Please log in to add item to cart") 
         }
     }
-    // console.log(typeof(product.images[1]), product.images[1])
+
 
     // check if image starts with (http:// or https://)
     const imageChecker = (productImage: any) => {
