@@ -30,24 +30,26 @@ const Product = ({product}: any) => {
         }
     }
 
+    console.log(imageChecker(product.images[1]? product.images[1] : placeholderImg))
+
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
-                <Image 
-                    // send non undefined value to function imgChecker
-                    src={imageChecker(product.images[1]? product.images[1] : placeholderImg)}
-                    alt={product.title}
-                    width={200}
-                    height={200}
-                    loading="lazy"
-                    className="productListingImg"
-                />
-                <h4 className={"w-[fit-content]"}>
-                    {product.title}
-                </h4>
-                <p className={"text-[1.2em]"}>
-                    ${product.price}
-                </p>
+            <Image 
+                // send non undefined value to function imgChecker
+                src={imageChecker(product.images[1]? product.images[1] : placeholderImg)}
+                alt={product.title}
+                width={200}
+                height={200}
+                loading="lazy"
+                className="productListingImg"
+            />
+            <h4 className={"w-[fit-content]"}>
+                {product.title}
+            </h4>
+            <p className={"text-[1.2em]"}>
+                ${product.price}
+            </p>
         </Link>
         <button 
         className="border text-[1em] font-medium bg-[#1a1a1a] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]" 

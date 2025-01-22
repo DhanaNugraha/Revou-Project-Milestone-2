@@ -80,7 +80,7 @@ const ProductDetail = () => {
     }
   }
 
-
+  
   return (
     <>
       <Head>
