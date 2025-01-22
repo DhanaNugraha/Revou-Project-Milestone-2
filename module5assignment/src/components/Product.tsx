@@ -22,7 +22,10 @@ const Product = ({product}: any) => {
 
     // check if image starts with (http:// or https://)
     const imageChecker = (productImage: any) => {
-        if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
+        if (productImage === undefined) {
+            return placeholderImg
+        }
+        else if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
             return productImage
         }
         else {
@@ -30,14 +33,15 @@ const Product = ({product}: any) => {
         }
     }
 
-    console.log(imageChecker(product.images[1]? product.images[1] : placeholderImg))
+    // console.log(imageChecker(product.images[1]? product.images[1] : placeholderImg))
 
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
             <Image 
                 // send non undefined value to function imgChecker
-                src={imageChecker(product.images[1]? product.images[1] : placeholderImg)}
+                // src={imageChecker(product.images[1])}
+                src={placeholderImg}
                 alt={product.title}
                 width={200}
                 height={200}
