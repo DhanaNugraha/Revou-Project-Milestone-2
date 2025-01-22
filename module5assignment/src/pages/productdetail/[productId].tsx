@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Head from "next/head";
 
 const ProductDetail = () => {
+  // true karna lgsg fetch dari awal
   const [isLoading, setIsLoading] = useState(true);
   const [productFetched, setProductFetched] = useState<any>({});
 

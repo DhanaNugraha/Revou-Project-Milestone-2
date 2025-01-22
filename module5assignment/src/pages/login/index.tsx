@@ -7,10 +7,13 @@ import Head from "next/head";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
     const handleLoginSubmit = async (event: any) => {
         event.preventDefault();
+
+        setIsLoading(true);
 
         try {
         const response = await fetch(
@@ -32,6 +35,8 @@ const Login = () => {
         data.access_token
         ?  localStorage.setItem("access_token", data.access_token)
         : alert("Invalid Email or Password!")
+
+        setIsLoading(false);
 
         } catch (error) {
             console.error("Error fetching user:", error);
@@ -64,6 +69,7 @@ const Login = () => {
                 setPassword={setPassword}
                 onSubmit={handleLoginSubmit}
                 formType = "Login"
+                isLoading={isLoading}
             />
         </>
     );

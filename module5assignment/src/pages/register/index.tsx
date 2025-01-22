@@ -7,10 +7,14 @@ import Head from "next/head";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleRegisterSubmit = async (event:any) => {
     event.preventDefault();
+
+    setIsLoading(true);
+
     try {
         const response = await fetch(
           "https://api.escuelajs.co/api/v1/users",
@@ -54,7 +58,10 @@ const Register = () => {
         } else {
             const data = await response.json();
             throw(data)
+
         }
+
+        setIsLoading(false);
 
       } catch (error:any) {
         console.error("Unable to crate account:", error.message);
@@ -81,7 +88,8 @@ const Register = () => {
         password={password}
         setPassword={setPassword}
         onSubmit={handleRegisterSubmit}
-        formType = "Register"
+        formType = "Sign Up"
+        isLoading={isLoading}
       />
     </>
   );

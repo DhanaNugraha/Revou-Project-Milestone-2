@@ -1,4 +1,4 @@
-const LoginRegisterForm = ({email, setEmail, password, setPassword, onSubmit, formType}:any) => {
+const LoginRegisterForm = ({email, setEmail, password, setPassword, onSubmit, formType, isLoading}:any) => {
     const submitButtonStyling = "border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
 
   return (
@@ -14,7 +14,7 @@ const LoginRegisterForm = ({email, setEmail, password, setPassword, onSubmit, fo
             </fieldset>
 
             <fieldset className={submitButtonStyling}>
-            <button type="submit">{formType}</button>
+            <button type="submit" disabled={isLoading}>{isLoading? "Loading..." : formType}</button>
             </fieldset>
         </form>
     )
