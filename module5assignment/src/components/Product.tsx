@@ -19,13 +19,10 @@ const Product = ({product}: any) => {
         }
     }
 
-
+    
     // check if image starts with (http:// or https://)
     const imageChecker = (productImage: any) => {
-        if (productImage === undefined) {
-            return placeholderImg
-        }
-        else if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
+        if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
             return productImage
         }
         else {
@@ -33,20 +30,24 @@ const Product = ({product}: any) => {
         }
     }
 
-    // console.log(imageChecker(product.images[1]? product.images[1] : placeholderImg))
+    // for next/image (Image) component to not load it using default next loader (it changes the link)
+    const loaderProp =({ src }:any) => {
+        return src;
+    }
+
 
   return (
     <div key = {product.id} className="productListing">
         <Link className="productListLinkContainer" href={`/productdetail/${product.id}`} key={product.id}> 
             <Image 
                 // send non undefined value to function imgChecker
-                // src={imageChecker(product.images[1])}
-                src={placeholderImg}
+                src={imageChecker(product.images[1]? product.images[1] : placeholderImg)}
                 alt={product.title}
                 width={200}
                 height={200}
                 loading="lazy"
                 className="productListingImg"
+                loader={loaderProp}
             />
             <h4 className={"w-[fit-content]"}>
                 {product.title}
