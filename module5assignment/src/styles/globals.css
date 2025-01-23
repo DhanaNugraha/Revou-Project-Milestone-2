@@ -84,7 +84,6 @@ h1 {
 
 .shopLogoContainer {
   display: flex;
-
 }
 
 
@@ -290,7 +289,11 @@ h1 {
   margin-bottom: 2%;
 }
 
-
+@media screen and (max-width: 479px) {
+  .shopLogoContainer > h1 {
+    display: none;
+  }
+}
 
 @media screen and (min-width: 480px){
   .productListing {
