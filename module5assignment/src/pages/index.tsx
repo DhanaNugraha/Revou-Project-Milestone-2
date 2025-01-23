@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 
 // client side 
-const ProductCategory = ({data}:any) => {
+const ProductCategory = async ({data}:any) => {
   const [categoryFetched, setCategoryFetched] = useState([]);
   const [categoryId, setCategoryId] = useState(1);
 
