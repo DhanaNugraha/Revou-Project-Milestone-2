@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Head from "next/head";
 
 const ProductDetail = () => {
+  // constants -----------------------------------------------------------------
   // true karna lgsg fetch dari awal
   const [isLoading, setIsLoading] = useState(true);
   const [productFetched, setProductFetched] = useState<any>({});
@@ -22,6 +23,8 @@ const ProductDetail = () => {
   ? `${productFetched.title}, ${productFetched.title.split(" ").join(", ")}, Shop Free, Product, Details, Product Details`
   : "Shop Free, Product, Details, Product Details";
 
+
+  // functions -----------------------------------------------------------------
   // will run twice, first render and when ready
   useEffect(() => {
     fetchProduct();
@@ -29,9 +32,12 @@ const ProductDetail = () => {
 
   const fetchProduct = async () => {
     try {
+      const productId = router.query.productId
 
-      // make a placeholder value for initial render
-      const productId = router.query.productId? router.query.productId : 10;
+      // at initial render, router will have no value. pass nothing so it wont fetch empty product
+      if (!productId) {
+        return;
+      }
 
       const response = await fetch(
         `https://api.escuelajs.co/api/v1/products/${productId}`
@@ -81,50 +87,59 @@ const ProductDetail = () => {
   }
 
 
-  return (
-    <>
-      <Head>
-          <meta charSet="UTF-8" />
-          <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta name="description" content={productFetched.description} />
-          <meta name="keyword" content={metaKeyword} />
-          <meta name="author" content="Dhana Nugraha" />
-          <title>Shop Free: {productFetched.title}</title>
-      </Head>
+  // Page content --------------------------------------------------------------
+  // initial value is loading, when items arrive, it will be changed
+  let pageContent = <p>This category might be empty <br/> Loading... </p>
 
-      <NavBar />
-      <div className="productDetailContainer">
-        {isLoading ? <p>Loading...</p> : null}
+  if (imageFetched?.length) {
+    pageContent = (
+      <>
+        <Head>
+            <meta charSet="UTF-8" />
+            <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta name="description" content={productFetched.description} />
+            <meta name="keyword" content={metaKeyword} />
+            <meta name="author" content="Dhana Nugraha" />
+            <title>Shop Free: {productFetched.title}</title>
+        </Head>
 
-        <section className="productDetailImgContainer">
-          <img
-            src={imageChecker(imageFetched[displayImageNum])}
-            className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
-            alt={productFetched.title? productFetched.title: "Product"}
-          />
-          <article className="productDetailImgButtonContainer">
-            <button onClick={() => onImgButtonClick("left")}>←</button>
-            <button onClick={() => onImgButtonClick("right")}>→</button>
-          </article>
-        </section>
+        <NavBar />
+        <div className="productDetailContainer">
+          {isLoading ? <p>Loading...</p> : null}
 
-        <section className="productDetailTextContainer">
-          <h1>{productFetched.title}</h1>
-          <p>{productFetched.description}</p>
-        </section>
+          <section className="productDetailImgContainer">
+            <img
+              src={imageChecker(imageFetched[displayImageNum])}
+              className="w-[50vw] object-contain min-w-[300px] max-w-[530px]"
+              alt={productFetched.title? productFetched.title: "Product"}
+            />
+            <article className="productDetailImgButtonContainer">
+              <button onClick={() => onImgButtonClick("left")}>←</button>
+              <button onClick={() => onImgButtonClick("right")}>→</button>
+            </article>
+          </section>
 
-        <p>Price: ${productFetched.price}</p>
+          <section className="productDetailTextContainer">
+            <h1>{productFetched.title}</h1>
+            <p>{productFetched.description}</p>
+          </section>
 
-        <button
-          className="border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
-          onClick={onAddToCart}
-        >
-          Add to Cart
-        </button>
-      </div>
-    </>
-  );
+          <p>Price: ${productFetched.price}</p>
+
+          <button
+            className="border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
+            onClick={onAddToCart}
+          >
+            Add to Cart
+          </button>
+        </div>
+      </>
+    )
+  }
+
+
+  return pageContent
 };
 
 export default ProductDetail;
