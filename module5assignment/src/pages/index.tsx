@@ -1,19 +1,8 @@
 import { useState, useEffect } from "react";
 import NavBar from "@/components/NavBar";
 import ProductListing from "@/components/ProductListing";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
-
-// Server Side 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch("https://api.escuelajs.co/api/v1/categories/");
-  const data = await response.json();
-  return {
-    props: {
-      data,
-    },
-  };
-};
 
 // client side 
 const ProductCategory = ({data}:any) => {
@@ -68,6 +57,17 @@ const ProductCategory = ({data}:any) => {
       />
     </>
   );
+};
+
+// Server Side 
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await fetch("https://api.escuelajs.co/api/v1/categories/");
+  const data = await response.json();
+  return {
+    props: {
+      data,
+    },
+  };
 };
 
 export default ProductCategory;
