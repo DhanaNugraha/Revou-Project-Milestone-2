@@ -5,11 +5,13 @@ import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCar
 import Head from "next/head";
 
 const ShoppingCart = () => {
+  // variables ----------------------------------------------------------------
   const [confirm, setConfirm] = useState(false);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [cart, setCart] = useState([]);
 
+  // functions ----------------------------------------------------------------
   useEffect(() => {
     localStorage.getItem("cart")
     ? setCart(JSON.parse(localStorage.getItem("cart")!))
@@ -43,6 +45,8 @@ const ShoppingCart = () => {
     setCart(SortCart());
   };
 
+
+  // Page Content ------------------------------------------------------------
   const pageContentTernary = confirm ? (
     <h2>Thank for your order</h2>
   ) : (
