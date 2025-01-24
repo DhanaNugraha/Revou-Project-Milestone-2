@@ -5,6 +5,7 @@ https://stackoverflow.com/questions/78029693/npm-run-build-is-not-working-in-nex
 add disable regis and login button with isloading(when fetching)
 change content as well can
 
+<<<<<<< HEAD
 {is loading? Loggin in...: Login} for isi
 
 
@@ -25,3 +26,6 @@ npm i --save-dev @types/jest
 npm install --save-dev next-router-mock
 
 https://dev.to/maciekgrzybek/testing-next-js-pages-1jai
+=======
+{is loading? Loggin in...: Login} for isi
+>>>>>>> parent of a52c47b (feat: jest setup)
