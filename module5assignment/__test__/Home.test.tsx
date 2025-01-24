@@ -29,7 +29,7 @@ const server = setupServer(
 );
 
 
-const unmockedFetch = global.fetch;
+// const unmockedFetch = global.fetch;
 
 // Test lifecycle hooks
 beforeAll(() => {
