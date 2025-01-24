@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import Register from "@/pages/register";
 import mockRouter from 'next-router-mock'
 
+// prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 
 

@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 
 // client side 
-const ProductCategory = ({data}:any) => {
+const Home = ({data}:any) => {
   const [categoryFetched, setCategoryFetched] = useState([]);
   const [categoryId, setCategoryId] = useState(1);
 
@@ -70,4 +70,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default ProductCategory;
+export default Home;

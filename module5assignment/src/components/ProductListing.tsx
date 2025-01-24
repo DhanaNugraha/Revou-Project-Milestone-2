@@ -18,30 +18,33 @@ const ProductListing = ({ categoryId }: any) => {
     } catch (error) {
       console.error("Error fetching product:", error);
     }
-  }
+  };
 
   // initial value is loading, when items arrive, it will be changed
-  let pageContent = <p>This category might be empty <br/> Loading... </p>
-  
-  if (productFetched?.length) {
-    pageContent = productFetched.map((product: any) => {
-        return (
-            <Product 
-                key={product.id} 
-                product = {product} 
-            />
-        )
-    })
-}
+  let pageContent = (
+    <p>
+      This category might be empty <br /> Loading...
+    </p>
+  );
 
-  const content = (
-    <div className = "productListingContainer">
-      {pageContent}
-    </div>
-  )
+  console.log("this is length of prod fetch", productFetched?.length > 0);
 
-  return content
-}
+  // console.log(productFetched);
+
+    if (productFetched?.length > 0) {
+      // console.log("inside if of productFetched")
+      pageContent = productFetched.map((product: any) => {
+          return (
+              <Product
+                  key={product.id}
+                  product = {product}
+              />
+          )
+      })
+  }
+
+  const content = <div className="productListingContainer">{pageContent}</div>;
+
+  return content;
+};
 export default ProductListing;
-
-

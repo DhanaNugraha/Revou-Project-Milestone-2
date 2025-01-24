@@ -33,3 +33,8 @@ npm install msw@1.3.5 --save-dev
 npm install --save-dev @testing-library/user-event @testing-library/dom
 
 https://stackoverflow.com/questions/74475449/jest-onsubmit-not-being-called
+
+npm test -- (test file) -> to test single test files
+ex: npm test -- Home.test.tsx
+
+https://benjaminjohnson.me/mocking-fetch

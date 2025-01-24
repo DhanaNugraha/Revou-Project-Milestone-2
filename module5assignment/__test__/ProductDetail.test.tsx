@@ -2,8 +2,11 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import mockRouter from 'next-router-mock'
+import {setupServer} from 'msw/node'
+import { rest } from "msw";
 import ProductDetail from "@/pages/productdetail/[productId]";
 
+// prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 
 describe("Product Detail Page", () => {

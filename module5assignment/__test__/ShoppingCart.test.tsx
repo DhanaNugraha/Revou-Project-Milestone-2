@@ -4,6 +4,7 @@ import "@testing-library/jest-dom";
 import mockRouter from 'next-router-mock'
 import ShoppingCart from "@/pages/shoppingcart";
 
+// prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 
 
@@ -45,5 +46,5 @@ describe("Shopping Cart Page", () => {
         })
     })
 
-    
+
 })

@@ -5,10 +5,10 @@ import Login from "@/pages/login";
 // import LoginRegisterForm from "@/components/LoginRegisterForm";
 import mockRouter from 'next-router-mock'
 
+// prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 
 
-// ===== BASIC TESTS ====
 
 describe("Login Page", () => {
 
