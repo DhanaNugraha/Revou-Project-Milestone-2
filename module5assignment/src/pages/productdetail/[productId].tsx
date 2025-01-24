@@ -89,7 +89,7 @@ const ProductDetail = () => {
 
   // Page content --------------------------------------------------------------
   // initial value is loading, when items arrive, it will be changed
-  let pageContent = <p>This category might be empty <br/> Loading... </p>
+  let pageContent = <p>This product might be empty <br/> Loading... </p>
 
   if (imageFetched?.length) {
     pageContent = (
@@ -106,6 +106,7 @@ const ProductDetail = () => {
 
         <NavBar />
         <div className="productDetailContainer">
+           {/* initial value is loading, when items arrive, it will be changed */}
           {isLoading ? <p>Loading...</p> : null}
 
           <section className="productDetailImgContainer">
