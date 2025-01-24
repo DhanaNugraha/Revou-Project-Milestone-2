@@ -21,3 +21,15 @@ change content as well can
 https://nextjs.org/docs/app/building-your-application/testing/jest
 
 npm i --save-dev @types/jest
+
+npm install --save-dev next-router-mock
+
+https://dev.to/maciekgrzybek/testing-next-js-pages-1jai
+
+msw 1.3.5
+
+npm install msw@1.3.5 --save-dev
+
+npm install --save-dev @testing-library/user-event @testing-library/dom
+
+https://stackoverflow.com/questions/74475449/jest-onsubmit-not-being-called
