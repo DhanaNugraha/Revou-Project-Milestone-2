@@ -7,7 +7,6 @@ import ShoppingCart from "@/pages/shoppingcart";
 // prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 
-
 describe("Shopping Cart Page", () => {
 
     describe("Basic rendering", () => {
@@ -39,12 +38,13 @@ describe("Shopping Cart Page", () => {
     })
 
     describe("Disabled States", () => {
-        test("Disables Place Order when cart is empty", async() => {
+        test("Disables Place Order when cart is empty", () => {
             render(<ShoppingCart />);
 
             expect(screen.getByRole("button", { name: "Place Order" })).toBeDisabled();
         })
     })
 
-
 })
+
+// npm test ShoppingCart.test.tsx

@@ -19,11 +19,11 @@ const mockCategories = [
     { "id":3, "name":"Furniture"},
   ];
 
-const mockProducts = [
-    {"id":2,"title":"Classic Red Pullover Hoodie","price":10,"description":"Elevate your casual wardrobe with our Classic Red Pullover Hoodie. Crafted with a soft cotton blend for ultimate comfort, this vibrant red hoodie features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs for a snug fit. The timeless design ensures easy pairing with jeans or joggers for a relaxed yet stylish look, making it a versatile addition to your everyday attire.","images":["[\"https://i.imgur.com/1twoaDy.jpeg\"","\"https://i.imgur.com/FDwQgLy.jpeg\"","\"https://i.imgur.com/kg1ZhhH.jpeg\"]"],"creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T08:36:29.000Z","category":{"id":1,"name":"Tools","image":"tools.png","creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T09:42:00.000Z"}},
+// const mockProducts = [
+//     {"id":2,"title":"Classic Red Pullover Hoodie","price":10,"description":"Elevate your casual wardrobe with our Classic Red Pullover Hoodie. Crafted with a soft cotton blend for ultimate comfort, this vibrant red hoodie features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs for a snug fit. The timeless design ensures easy pairing with jeans or joggers for a relaxed yet stylish look, making it a versatile addition to your everyday attire.","images":["[\"https://i.imgur.com/1twoaDy.jpeg\"","\"https://i.imgur.com/FDwQgLy.jpeg\"","\"https://i.imgur.com/kg1ZhhH.jpeg\"]"],"creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T08:36:29.000Z","category":{"id":1,"name":"Tools","image":"tools.png","creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T09:42:00.000Z"}},
 
-    {"id":3,"title":"Classic Heather Gray Hoodie","price":69,"description":"Stay cozy and stylish with our Classic Heather Gray Hoodie. Crafted from soft, durable fabric, it features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs. Perfect for a casual day out or a relaxing evening in, this hoodie is a versatile addition to any wardrobe.","images":["[\"https://i.imgur.com/cHddUCu.jpeg\"","\"https://i.imgur.com/CFOjAgK.jpeg\"","\"https://i.imgur.com/wbIMMme.jpeg\"]"],"creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T10:03:22.000Z","category":{"id":1,"name":"Tools","image":"tools.png","creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T09:42:00.000Z"}}
-];
+//     {"id":3,"title":"Classic Heather Gray Hoodie","price":69,"description":"Stay cozy and stylish with our Classic Heather Gray Hoodie. Crafted from soft, durable fabric, it features a kangaroo pocket, adjustable drawstring hood, and ribbed cuffs. Perfect for a casual day out or a relaxing evening in, this hoodie is a versatile addition to any wardrobe.","images":["[\"https://i.imgur.com/cHddUCu.jpeg\"","\"https://i.imgur.com/CFOjAgK.jpeg\"","\"https://i.imgur.com/wbIMMme.jpeg\"]"],"creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T10:03:22.000Z","category":{"id":1,"name":"Tools","image":"tools.png","creationAt":"2025-01-24T08:29:50.000Z","updatedAt":"2025-01-24T09:42:00.000Z"}}
+// ];
 
 
 // Setup MSW (Mock Service Worker)
@@ -36,9 +36,9 @@ const server = setupServer(
     }),
 
     // Define how the server should respond to GET requests
-    rest.get(`https://api.escuelajs.co/api/v1/categories/1/products`, (req, res, ctx) => {
-        return res(ctx.json(mockProducts));
-    }),
+    // rest.get(`https://api.escuelajs.co/api/v1/categories/1/products`, (req, res, ctx) => {
+    //     return res(ctx.json(mockProducts));
+    // }),
 );
 
 
