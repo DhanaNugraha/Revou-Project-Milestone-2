@@ -22,12 +22,12 @@ const ProductListing = ({ categoryId }: any) => {
 
   // initial value is loading, when items arrive, it will be changed
   let pageContent = (
-    <p>
+    <p data-testid="loading-state">
       This category might be empty <br /> Loading...
     </p>
   );
 
-  console.log("this is length of prod fetch", productFetched?.length > 0);
+  // console.log("this is length of prod fetch", productFetched?.length > 0);
 
   // console.log(productFetched);
 
