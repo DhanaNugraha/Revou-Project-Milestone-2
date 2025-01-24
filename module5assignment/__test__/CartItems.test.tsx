@@ -18,8 +18,7 @@ const mockItem = {
 describe("Shopping Cart Page", () => {
 
     describe("Basic rendering", () => {
-        test ("renders Cart Items", () => {
-            // console.log(mockItems.)
+        test ("renders Cart Items when given item", () => {
             render(<CartItems item={mockItem} />);
 
             expect(screen.getByRole("img", { name: mockItem.title })).toBeInTheDocument();
@@ -38,7 +37,7 @@ describe("Shopping Cart Page", () => {
 
             expect(screen.getByRole("button", { name: "✖" })).toBeInTheDocument();
 
-            screen.debug()
+            // screen.debug()
 
         })
     })
