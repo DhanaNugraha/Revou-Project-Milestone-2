@@ -161,6 +161,6 @@ export const SortCart = () => {
         return sortedCart
     }
     else {
-        []
+        return []
     }
 }
