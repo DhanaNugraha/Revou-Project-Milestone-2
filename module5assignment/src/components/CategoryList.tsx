@@ -1,21 +1,14 @@
-import { useState, useEffect } from "react";
-import NavBar from "@/components/NavBar";
-import ProductListing from "@/components/ProductListing";
-import { GetServerSideProps } from "next";
+
 import { useRouter } from "next/router";
-import Head from "next/head";
-import { useParams } from "next/navigation";
-useParams;
 
 const CategoryList = ({ data }: any) => {
   const router = useRouter();
-  const params = useParams();
 
   const categoryFetched = data.slice(0, 5);
   let categoryId: any = "";
 
-  if (params.categoryId) {
-    categoryId = params.categoryId;
+  if (router.query.categoryId) {
+    categoryId = Number(router.query.categoryId);
   }
 
   const handleClickCategory = (event: any) => {
@@ -32,6 +25,7 @@ const CategoryList = ({ data }: any) => {
   const checkCurrentCategory = (categoryID: any, currentCategory: any) => {
     if (categoryID === currentCategory) {
       return currentCategoryStyling;
+
     } else {
       return CategoryStyling;
     }
@@ -43,13 +37,14 @@ const CategoryList = ({ data }: any) => {
         <button
             id="categoryAll"
             key="All"
-            className={params.categoryId 
+            className={router.query.categoryId 
                 ? CategoryStyling 
                 : currentCategoryStyling}
+            onClick={() => router.push("/")}
             >
             All
         </button>
-        
+
         {categoryFetched.map((category: any) => (
           <button
             id={category.id}

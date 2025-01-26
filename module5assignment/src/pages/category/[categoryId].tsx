@@ -4,6 +4,7 @@ import ProductListing from "@/components/ProductListing";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import CategoryList from "@/components/CategoryList";
 
 // client side 
 const Home = ({data}:any) => {
@@ -12,32 +13,18 @@ const Home = ({data}:any) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-  
-  const [categoryFetched, setCategoryFetched] = useState([]);
-  const [categoryId, setCategoryId] = useState(1);
 
-  useEffect(() => {
-    setCategoryFetched(data.slice(0,5));
-    setCategoryId(data.slice(0)[0].id)
-  }, [])
+  const categoryFetched = data.slice(0, 5);
 
-  const handleClickCategory = (event:any) => {
-    setCategoryId(Number(event.target.id))
-    return event.target.id
-  }
+  let currentCategory: any = ""
 
-  const currentCategoryStyling = "w-[1fr] transition-[0.25s] border-b-blue-400 text-blue-400 border-b border-solid hover:border-[#646cff] hover:scale-[108%]"
-
-  const CategoryStyling = "w-[1fr] transition-[0.25s] rounded-[1px] border-b border-solid hover:border-[#646cff] hover:scale-[108%]"
-
-  const checkCurrentCategory = (categoryID: any, currentCategory: any) => {
-    if (categoryID === currentCategory) {
-      return currentCategoryStyling
-    } else {
-      return CategoryStyling
+  categoryFetched.map((category: any) =>
+    {
+      if (router.query.categoryId === category.id) {
+        currentCategory = category.name
+      }
     }
-  }
-  
+  )
 
   return (
     <>
@@ -45,23 +32,17 @@ const Home = ({data}:any) => {
         <meta charSet="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/shopping-bag.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Shop Free home page. Find your favorite products here." />
-        <meta name="keyword" content={categoryFetched.map((category: any) => category.name).join(", ")} />
+        <meta name="description" content={`Shop Free ${currentCategory} category page. Find your favorite ${currentCategory} here.`} />
+        <meta name="keyword" content={currentCategory} />
         <meta name="author" content="Dhana Nugraha" />
-        <title>Shop Free: Home</title>
+        <title>{`Shop Free: ${currentCategory} category`}</title>
       </Head>
 
       <NavBar />
 
-      <ul className="flex justify-around pt-[2%] pb-[4%]">
-        {categoryFetched.map((category: any) => (
-          <button id={category.id} key={category.id} className={checkCurrentCategory(category.id, categoryId)} onClick={handleClickCategory}>{category.name}</button>
-        ))}
-      </ul>
+      <CategoryList data = {data}/>
 
-      <ProductListing
-        categoryId = {categoryId} 
-      />
+      <ProductListing categoryId = {router.query.categoryId} />
     </>
   );
 };
