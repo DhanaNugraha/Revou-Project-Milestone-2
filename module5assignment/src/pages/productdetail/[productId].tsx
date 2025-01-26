@@ -9,16 +9,21 @@ const ProductDetail = ({productFetched}:any) => {
   // constants -----------------------------------------------------------------
   // initial fallback value
   const router = useRouter();
+  console.log(router)
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
 
   const placeholderImg = "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
 
-  // ternary to prevent undefined for meta description
-  const metaKeyword = productFetched.title
-  ? `${productFetched.title}, ${productFetched.title.split(" ").join(", ")}, Shop Free, Product, Details, Product Details`
-  : "Shop Free, Product, Details, Product Details";
+
+  // To prevent undefined for meta description
+  let metaKeyword = "Shop Free, Product, Details, Product Details";
+
+  if (router.query.productId) {
+    metaKeyword = `${productFetched.title}, ${productFetched.title.split(" ").join(", ")}, Shop Free, Product, Details, Product Details`
+  }
+  
 
   // states --------------------------------------------------------------------
   const [imageFetched, setImageFetched] = useState<any>([placeholderImg]);
@@ -78,8 +83,6 @@ const ProductDetail = ({productFetched}:any) => {
 
       <NavBar />
       <div className="productDetailContainer">
-        {/* initial value is loading, when items arrive, it will be changed */}
-        {/* {isLoading ? <p>Loading...</p> : null} */}
 
         <section className="productDetailImgContainer">
           <img
@@ -98,7 +101,7 @@ const ProductDetail = ({productFetched}:any) => {
           <p>{productFetched.description}</p>
         </section>
 
-        <p>{`Price: ${productFetched.price}`}</p>
+        <p>{`Price: $${productFetched.price}`}</p>
 
         <button
           className="border text-[1em] font-medium bg-[#242424] cursor-pointer transition-[border-color] duration-[0.25s] px-[1.2em] py-[0.6em] rounded-lg border-solid border-transparent hover:border-[#646cff]"
@@ -115,16 +118,11 @@ export default ProductDetail;
 
 
 export const getServerSideProps: GetServerSideProps = (async (context) => {
-  // Fetch data from external API using params context
   if (!context.params) {
-    // return empty props when router not ready
     return { props: {} };
-  }
-  else {
-    // console.log(context)
+  } else {
     const res = await fetch(`https://api.escuelajs.co/api/v1/products/${context.params.productId}`)
     const productFetched = await res.json()
-    // Pass data to the page via props
     return { props: { productFetched } }
   }
 })

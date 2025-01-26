@@ -5,15 +5,47 @@ import mockRouter from 'next-router-mock'
 import {setupServer} from 'msw/node'
 import { rest } from "msw";
 import ProductDetail from "@/pages/productdetail/[productId]";
+import { useRouter } from "next/router";
 
-// prevent error from next/router
-jest.mock('next/router', () => jest.requireActual('next-router-mock'))
+// mock router
+jest.mock('next/router', () => ({
+    useRouter() {
+      return ({
+        pathname: "/productdetail/[productId]",
+        route: "/productdetail/[productId]",
+        query: {
+            productId: "2"
+            },
+        asPath: "/productdetail/2",
+      });
+    },
+}));
+
+const mockProduct = {
+"id" : 2, 
+"title" : "Classic Red Pullover Hoodie",
+"price" : 10,
+"description" : "Product description",
+"qty"  : 1,
+"images": ["1", "2", "3"]
+}
+
+const server = setupServer(
+    rest.get(`https://api.escuelajs.co/api/v1/products/2`, (req, res, ctx) =>
+      res(ctx.json(mockProduct))
+    )
+  );
+  
+  beforeAll(() => server.listen());
+  afterEach(() => server.resetHandlers());
+  afterAll(() => server.close());
+
 
 describe("Product Detail Page", () => {
 
     describe("Basic rendering", () => {
         test ("renders NavBar with all elements", () => {
-            render(<ProductDetail />);
+            render(<ProductDetail productFetched={mockProduct}/>);
 
             expect(screen.getByRole("img", { name: "Shopping Bag" })).toBeInTheDocument();
 
@@ -29,13 +61,24 @@ describe("Product Detail Page", () => {
         })
 
         test ("renders Product Detail component before fetch", () => {
-            render(<ProductDetail />);
+            render(<ProductDetail productFetched={mockProduct}/>);
 
-            expect(screen.getByText("Loading...")).toBeInTheDocument();
+            expect(screen.getByRole("img", { name: mockProduct.title })).toBeInTheDocument();
 
-            expect(screen.getByRole("img", { name: "Product" })).toBeInTheDocument();
+            expect(screen.getByRole("button", { name: "←" })).toBeInTheDocument();
+
+            expect(screen.getByRole("button", { name: "→" })).toBeInTheDocument();
+            
+            expect(screen.getByText(mockProduct.title)).toBeInTheDocument();
+
+            expect(screen.getByText(mockProduct.description)).toBeInTheDocument();
+
+            expect(screen.getByText("Price: $" + mockProduct.price)).toBeInTheDocument();
 
             expect(screen.getByRole("button", { name: "Add to Cart" })).toBeInTheDocument();
         })
     })
+
 })
+
+// npm test ProductDetail.test.tsx
