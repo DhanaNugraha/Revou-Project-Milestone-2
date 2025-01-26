@@ -4,28 +4,14 @@ import "@testing-library/jest-dom";
 import mockRouter from 'next-router-mock'
 import {setupServer} from 'msw/node'
 import { rest } from "msw";
-import ProductDetail from "@/pages/productdetail/[productId]";
 import { useRouter } from "next/router";
-
-const mockProduct = {
-    "id" : 2, 
-    "title" : "Classic Red Pullover Hoodie",
-    "price" : 10,
-    "description" : "Product description",
-    "qty"  : 1,
-    "images": ["1", "2", "3"]
-    }
-
+import ProductDetail from "@/pages/productdetail/[productId]";
+import CategoryPage from "@/pages/category/[categoryId]";
+import Home from "@/pages";
 
 jest.mock('next/router', () => ({
     useRouter() {
       return ({
-        pathname: "/productdetail/[productId]",
-        route: "/productdetail/[productId]",
-        query: {
-            productId: "3"
-            },
-        asPath: "/productdetail/3",
         isFallback: true,
       });
     },
@@ -33,9 +19,20 @@ jest.mock('next/router', () => ({
 
 describe("Router Fallback rendering", () => {
 
+    test ("Renders Home Page component on fallback", () => {
+        render(<Home data={{}}/>);
+
+        expect(screen.getByText("Loading..." )).toBeInTheDocument();
+    })
+
     test ("Renders Product Detail Page component on fallback", () => {
-        render(<ProductDetail productFetched={mockProduct}/>);
-        // screen.debug()
+        render(<ProductDetail productFetched={{}}/>);
+
+        expect(screen.getByText("Loading..." )).toBeInTheDocument();
+    })
+
+    test ("Renders Category Page component on fallback", () => {
+        render(<CategoryPage data={{}}/>);
 
         expect(screen.getByText("Loading..." )).toBeInTheDocument();
     })

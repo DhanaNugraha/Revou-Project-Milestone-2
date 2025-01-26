@@ -7,7 +7,7 @@ import Head from "next/head";
 import CategoryList from "@/components/CategoryList";
 
 // client side 
-const Home = ({data}:any) => {
+const CategoryPage = ({data}:any) => {
   // initial fallback value
   const router = useRouter();
   if (router.isFallback) {
@@ -58,4 +58,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export default Home;
+export default CategoryPage;
