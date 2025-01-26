@@ -4,7 +4,6 @@ import ProductListing from "@/components/ProductListing";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import CategoryList from "@/components/CategoryList";
 
 // client side 
 const Home = ({data}:any) => {
@@ -13,7 +12,7 @@ const Home = ({data}:any) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-
+  
   const [categoryFetched, setCategoryFetched] = useState([]);
   const [categoryId, setCategoryId] = useState(1);
 
@@ -54,7 +53,11 @@ const Home = ({data}:any) => {
 
       <NavBar />
 
-      <CategoryList data = {data}/>
+      <ul className="flex justify-around pt-[2%] pb-[4%]">
+        {categoryFetched.map((category: any) => (
+          <button id={category.id} key={category.id} className={checkCurrentCategory(category.id, categoryId)} onClick={handleClickCategory}>{category.name}</button>
+        ))}
+      </ul>
 
       <ProductListing
         categoryId = {categoryId} 
