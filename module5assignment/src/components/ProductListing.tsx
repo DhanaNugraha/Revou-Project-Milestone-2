@@ -10,11 +10,19 @@ const ProductListing = ({ categoryId }: any) => {
 
   const fetchProduct = async () => {
     try {
-      const response = await fetch(
-        `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`
-      );
+      let productLink = ""
+
+      if (categoryId === "All") {
+        productLink = "https://api.escuelajs.co/api/v1/products"
+      }
+      else {
+        productLink = `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`
+      }
+
+      const response = await fetch( productLink );
       const data = await response.json();
       setProductFetched(data);
+
     } catch (error) {
       console.error("Error fetching product:", error);
     }

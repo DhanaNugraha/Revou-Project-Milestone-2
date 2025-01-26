@@ -14,31 +14,7 @@ const Home = ({data}:any) => {
     return <div>Loading...</div>;
   }
 
-  const [categoryFetched, setCategoryFetched] = useState([]);
-  const [categoryId, setCategoryId] = useState(1);
-
-  useEffect(() => {
-    setCategoryFetched(data.slice(0,5));
-    setCategoryId(data.slice(0)[0].id)
-  }, [])
-
-  const handleClickCategory = (event:any) => {
-    setCategoryId(Number(event.target.id))
-    return event.target.id
-  }
-
-  const currentCategoryStyling = "w-[1fr] transition-[0.25s] border-b-blue-400 text-blue-400 border-b border-solid hover:border-[#646cff] hover:scale-[108%]"
-
-  const CategoryStyling = "w-[1fr] transition-[0.25s] rounded-[1px] border-b border-solid hover:border-[#646cff] hover:scale-[108%]"
-
-  const checkCurrentCategory = (categoryID: any, currentCategory: any) => {
-    if (categoryID === currentCategory) {
-      return currentCategoryStyling
-    } else {
-      return CategoryStyling
-    }
-  }
-  
+  const categoryFetched = data.slice(0, 5);
 
   return (
     <>
@@ -56,9 +32,7 @@ const Home = ({data}:any) => {
 
       <CategoryList data = {data}/>
 
-      <ProductListing
-        categoryId = {categoryId} 
-      />
+      <ProductListing categoryId = "All" />
     </>
   );
 };
