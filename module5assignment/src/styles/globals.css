@@ -120,6 +120,7 @@ h1 {
   margin-bottom: 1em;
   list-style: none;
   height: auto;
+  max-height: 300px;
   flex-shrink: 0;
   box-shadow: 0px 0px 4px gray;
   border-radius: 16px;
@@ -352,7 +353,23 @@ h1 {
 }
 
 
+/* Searchhbar--------------------------- */
+.searchbarForm, .searchbarFieldset {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
 
+.searchbarForm {
+  margin-top: 1.1em;
+}
+
+#searchbar {
+  width: 50%;
+  padding: 0.4em;
+  padding-top: 0.2em;
+  border-radius: 4px;
+}
 
 
 @media screen and (max-width: 479px) {

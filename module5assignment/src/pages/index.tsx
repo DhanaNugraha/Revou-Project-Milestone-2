@@ -7,6 +7,7 @@ import Head from "next/head";
 import toast, { Toaster } from 'react-hot-toast';
 import CategoryList from "@/components/CategoryList";
 import Footer from "@/components/Footer";
+import Searchbar from "@/components/Searchbar";
 
 // client side 
 const Home = ({data}:any) => {
@@ -17,6 +18,8 @@ const Home = ({data}:any) => {
   }
 
   const categoryFetched = data.slice(0, 5);
+
+  const [searchProduct, setSearchProduct] = useState("");
 
   return (
     <>
@@ -34,9 +37,14 @@ const Home = ({data}:any) => {
 
       <NavBar />
 
+      <Searchbar 
+      searchProduct={searchProduct}
+      setSearchProduct={setSearchProduct} 
+      />
+
       <CategoryList data = {data}/>
 
-      <ProductListing categoryId = "All" />
+      <ProductListing categoryId = "All" searchProduct = {searchProduct} />
       
       <Footer />
     </>

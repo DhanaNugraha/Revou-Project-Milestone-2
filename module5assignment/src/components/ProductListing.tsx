@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Product from "./Product";
 
-const ProductListing = ({ categoryId }: any) => {
+const ProductListing = ({ categoryId, searchProduct = false }: any) => {
   const [productFetched, setProductFetched] = useState<any>([]);
 
   useEffect(() => {
@@ -40,16 +40,21 @@ const ProductListing = ({ categoryId }: any) => {
   // console.log(productFetched);
 
     if (productFetched?.length > 0) {
-      // console.log("inside if of productFetched")
       pageContent = productFetched.map((product: any) => {
-          return (
+        // add ternary here
+          if (searchProduct && !product.title.toLowerCase().includes(searchProduct.toLowerCase())) {
+            return 
+          }
+          else {
+            return (
               <Product
                   key={product.id}
                   product = {product}
               />
-          )
+            )
+          }
       })
-  }
+    }
 
   const content = <div className="productListingContainer">{pageContent}</div>;
 
