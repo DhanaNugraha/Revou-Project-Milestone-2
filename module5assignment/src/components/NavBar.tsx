@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 const NavBar = () => {
@@ -24,7 +25,11 @@ const NavBar = () => {
     localStorage.clear();
     setIsLoggedIn(false)
     router.push("/login");
-    alert("Successfully logged out")
+    toast.success(`You have successfully logged out!`,   
+      {style: {
+      background: '#666666',
+      color: '#FFFFFF',
+    },  icon: '👋'});
   }
 
   return (

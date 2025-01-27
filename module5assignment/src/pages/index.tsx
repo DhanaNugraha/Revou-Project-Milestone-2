@@ -4,6 +4,7 @@ import ProductListing from "@/components/ProductListing";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import toast, { Toaster } from 'react-hot-toast';
 import CategoryList from "@/components/CategoryList";
 
 // client side 
@@ -28,6 +29,8 @@ const Home = ({data}:any) => {
         <title>Shop Free: Home</title>
       </Head>
 
+      <Toaster />
+      
       <NavBar />
 
       <CategoryList data = {data}/>

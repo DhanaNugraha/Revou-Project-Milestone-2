@@ -4,6 +4,7 @@ import { addToCart } from "@/hooks/useCart";
 import NavBar from "@/components/NavBar";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
+import toast, { Toaster } from 'react-hot-toast';
 
 const ProductDetail = ({productFetched}:any) => {
   // constants -----------------------------------------------------------------
@@ -38,7 +39,10 @@ const ProductDetail = ({productFetched}:any) => {
   // functions -----------------------------------------------------------------
   const onAddToCart = () => {
     addToCart(productFetched);
-    alert("Item added to cart");
+    toast.success(`${productFetched.title} added to cart`,   {style: {
+      background: '#666666',
+      color: '#FFFFFF',
+    }});
   };
 
   const onImgButtonClick = (action: any) => {
@@ -80,6 +84,8 @@ const ProductDetail = ({productFetched}:any) => {
           <meta name="author" content="Dhana Nugraha" />
           <title>{`Shop Free: ${productFetched.title}`}</title>
       </Head>
+
+      <Toaster />
 
       <NavBar />
       <div className="productDetailContainer">

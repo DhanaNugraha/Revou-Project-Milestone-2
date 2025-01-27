@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import CategoryList from "@/components/CategoryList";
+import toast, { Toaster } from 'react-hot-toast';
 
 // client side 
 const CategoryPage = ({data}:any) => {
@@ -37,6 +38,8 @@ const CategoryPage = ({data}:any) => {
         <meta name="author" content="Dhana Nugraha" />
         <title>{`Shop Free: ${currentCategory} category`}</title>
       </Head>
+
+      <Toaster />
 
       <NavBar />
 

@@ -3,6 +3,8 @@ import CartItems from "@/components/CartItems";
 import NavBar from "@/components/NavBar";
 import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCart, RemoveFromCart, SortCart } from "@/hooks/useCart";
 import Head from "next/head";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const ShoppingCart = () => {
   // variables ----------------------------------------------------------------
@@ -89,6 +91,8 @@ const ShoppingCart = () => {
           <meta name="author" content="Dhana Nugraha" />
           <title>Shop Free: Cart</title>
       </Head>
+
+      <Toaster />
 
       <NavBar />
 

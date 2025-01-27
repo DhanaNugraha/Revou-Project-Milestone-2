@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import LoginRegisterForm from "@/components/LoginRegisterForm";
 import NavBar from "@/components/NavBar";
 import Head from "next/head";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -34,7 +35,11 @@ const Login = () => {
 
         data.access_token
         ?  localStorage.setItem("access_token", data.access_token)
-        : alert("Invalid Email or Password!")
+        : toast.error("Invalid Email or Password!",   
+            {style: {
+            background: '#666666',
+            color: '#FFFFFF',
+        }});
 
         setIsLoading(false);
 
@@ -42,12 +47,17 @@ const Login = () => {
             console.error("Error fetching user:", error);
 
         } finally {
-            if (localStorage.getItem("access_token")) {
-                // alert("You have successfully logged in!");
+            if (localStorage.getItem("access_token")) {    
+                toast.success(`You have successfully logged in! Redirecting...`,   
+                    {style: {
+                    background: '#666666',
+                    color: '#FFFFFF',
+                }});
                 router.push("/");
             } 
         }
     };
+
 
     return (
         <>
@@ -61,6 +71,7 @@ const Login = () => {
                 <title>Shop Free: Login</title>
             </Head>
 
+            <Toaster />
             <NavBar />
             <LoginRegisterForm
                 email={email}

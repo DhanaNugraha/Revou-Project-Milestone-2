@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { addToCart } from "@/hooks/useCart";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Product = ({product}: any) => {
     const router = useRouter();
@@ -12,10 +13,18 @@ const Product = ({product}: any) => {
     const onAddToCart = () => {
         if (token) {
             addToCart(product);
-            alert("Item added to cart") 
+            toast.success(`${product.title} added to cart`,   {style: {
+                background: '#666666',
+                color: '#FFFFFF',
+            }});
         } else {
             router.push("/login") 
-            alert("Please log in to add item to cart") 
+            toast.error("Please log in to add item to cart",   
+                {style: {
+                background: '#666666',
+                color: '#FFFFFF',
+            }});
+            // alert("Please log in to add item to cart") 
         }
     }
 

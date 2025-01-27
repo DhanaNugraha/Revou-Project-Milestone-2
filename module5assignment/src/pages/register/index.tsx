@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import LoginRegisterForm from "@/components/LoginRegisterForm";
 import NavBar from "@/components/NavBar";
 import Head from "next/head";
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -51,8 +52,17 @@ const Register = () => {
 
           data.access_token
           ?  localStorage.setItem("access_token", data.access_token)
-          : alert("Fail to register account, please try again later!")
-
+          : toast.error("Fail to register account, please try again later!",   
+            {style: {
+            background: '#666666',
+            color: '#FFFFFF',
+            }});
+       
+          toast.success(`Your account has been created successfully! Redirecting...`,   
+            {style: {
+            background: '#666666',
+            color: '#FFFFFF',
+          }});
           router.push("/")
           
         } else {
@@ -66,7 +76,8 @@ const Register = () => {
       } catch (error:any) {
         console.error("Unable to crate account:", error.message);
         alert(`Unable to create account: ${error.message}`)
-      }
+
+      } 
   }
 
   return (
@@ -81,6 +92,7 @@ const Register = () => {
           <title>Shop Free: Sign Up</title>
       </Head>
 
+      <Toaster />
       <NavBar />
       <LoginRegisterForm
         email={email}
