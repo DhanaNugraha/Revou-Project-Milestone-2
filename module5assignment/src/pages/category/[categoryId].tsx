@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import CategoryList from "@/components/CategoryList";
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "@/components/Footer";
 
 // client side 
 const CategoryPage = ({data}:any) => {
@@ -46,6 +47,8 @@ const CategoryPage = ({data}:any) => {
       <CategoryList data = {data}/>
 
       <ProductListing categoryId = {router.query.categoryId} />
+
+      <Footer />
     </>
   );
 };

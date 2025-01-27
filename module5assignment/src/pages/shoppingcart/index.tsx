@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import { TotalCartItems, TotalCartPrice, SubmitCart, addToCart, SubstractFromCart, RemoveFromCart, SortCart } from "@/hooks/useCart";
 import Head from "next/head";
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "@/components/Footer";
 
 
 const ShoppingCart = () => {
@@ -93,10 +94,13 @@ const ShoppingCart = () => {
       </Head>
 
       <Toaster />
+      <div className="cartPageContentContainer">
+        <NavBar />
 
-      <NavBar />
+        <main className="main mainCart">{pageContentTernary}</main>
 
-      <main className="main mainCart">{pageContentTernary}</main>
+        <Footer />
+      </div>
     </>
   );
 };

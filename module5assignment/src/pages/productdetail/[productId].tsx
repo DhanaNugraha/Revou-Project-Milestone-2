@@ -5,6 +5,7 @@ import NavBar from "@/components/NavBar";
 import Head from "next/head";
 import { GetServerSideProps } from "next";
 import toast, { Toaster } from 'react-hot-toast';
+import Footer from "@/components/Footer";
 
 const ProductDetail = ({productFetched}:any) => {
   // constants -----------------------------------------------------------------
@@ -116,6 +117,8 @@ const ProductDetail = ({productFetched}:any) => {
           Add to Cart
         </button>
       </div>
+
+      <Footer />
     </>
   )
 };

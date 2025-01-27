@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import toast, { Toaster } from 'react-hot-toast';
 import CategoryList from "@/components/CategoryList";
+import Footer from "@/components/Footer";
 
 // client side 
 const Home = ({data}:any) => {
@@ -30,12 +31,14 @@ const Home = ({data}:any) => {
       </Head>
 
       <Toaster />
-      
+
       <NavBar />
 
       <CategoryList data = {data}/>
 
       <ProductListing categoryId = "All" />
+      
+      <Footer />
     </>
   );
 };

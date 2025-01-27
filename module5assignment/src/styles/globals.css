@@ -109,6 +109,7 @@ h1 {
   justify-content: center;
   margin-left: 6%;
   margin-right: 6%;
+  min-height: 100vh
   /* justify-content: space-between */
 }
 
@@ -159,6 +160,12 @@ h1 {
 
 
 /* cart */
+.cartPageContentContainer {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
 .mainCart {
   margin: 0;
   padding: 2%;
@@ -166,6 +173,7 @@ h1 {
   /* min-height: 100vh; */
   display: flex;
   flex-flow: column;
+  flex-grow: 1;
   /* min-height: 50vh; */
 }
 
@@ -288,6 +296,64 @@ h1 {
 .productDetailTextContainer > h1 {
   margin-bottom: 2%;
 }
+
+
+/* Footer ------------------------------- */
+.footerContainer {
+  display: flex; 
+  justify-content: space-between; 
+  padding: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background: #242424;
+  margin-top: 1em;
+}
+
+.footerNavigationContainer, .footerServicesContainer {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.footerSocialsLinksContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.footerSocialsLinksContainer > a {
+  transition-duration: 300ms;
+  opacity: 0.9
+}
+
+.footerSocialsLinksContainer > a:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.footerHeadings {
+  margin-bottom: 0.2em;
+  font-weight:bold;
+  font-size: 1.2em;
+}
+
+.footerLinks {
+  opacity: 0.8;
+  transition-duration: 300ms;
+}
+
+.footerLinks:hover {
+  color: #60A5FA;
+  opacity: 1;
+}
+
+.footerLogoContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+
+
+
 
 @media screen and (max-width: 479px) {
   .shopLogoContainer > h1 {
