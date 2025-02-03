@@ -31,10 +31,14 @@ const Product = ({product}: any) => {
     
     // check if image starts with (http:// or https://)
     const imageChecker = (productImage: any) => {
-        if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
-            return productImage
+        const cleanProductImageString = productImage.replace(/[['"]+/g, '');
+        
+        if (cleanProductImageString.startsWith("http://") || cleanProductImageString.startsWith("https://")) {
+            console.log("Here")
+            return cleanProductImageString
         }
         else {
+            console.log("Here 2")
             return placeholderImg
         }
     }

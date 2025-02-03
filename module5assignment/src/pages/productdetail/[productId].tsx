@@ -11,7 +11,7 @@ const ProductDetail = ({productFetched}:any) => {
   // constants -----------------------------------------------------------------
   // initial fallback value
   const router = useRouter();
-  console.log(router)
+  // console.log(router)
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
@@ -65,10 +65,14 @@ const ProductDetail = ({productFetched}:any) => {
 
   // check if image starts with (http:// or https://)
   const imageChecker = (productImage: any) => {
-    if (productImage.startsWith("http://") || productImage.startsWith("https://")) {
-        return productImage
+    const cleanProductImageString = productImage.replace(/[['"]+/g, '');
+    
+    if (cleanProductImageString.startsWith("http://") || cleanProductImageString.startsWith("https://")) {
+        console.log("Here")
+        return cleanProductImageString
     }
     else {
+        console.log("Here 2")
         return placeholderImg
     }
   }
