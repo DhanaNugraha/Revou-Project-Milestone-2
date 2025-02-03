@@ -94,6 +94,7 @@ const ShoppingCart = () => {
       </Head>
 
       <Toaster />
+      
       <div className="cartPageContentContainer">
         <NavBar />
 

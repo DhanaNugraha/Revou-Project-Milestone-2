@@ -35,18 +35,20 @@ const Home = ({data}:any) => {
 
       <Toaster />
 
-      <NavBar />
+      <div className="homePageContentContainer">
+        <NavBar />
 
-      <Searchbar 
-      searchProduct={searchProduct}
-      setSearchProduct={setSearchProduct} 
-      />
+        <Searchbar 
+        searchProduct={searchProduct}
+        setSearchProduct={setSearchProduct} 
+        />
 
-      <CategoryList data = {data}/>
+        <CategoryList data = {data}/>
 
-      <ProductListing categoryId = "All" searchProduct = {searchProduct} />
-      
-      <Footer />
+        <ProductListing categoryId = "All" searchProduct = {searchProduct} />
+        
+        <Footer />
+      </div>
     </>
   );
 };

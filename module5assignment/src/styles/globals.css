@@ -109,7 +109,8 @@ h1 {
   justify-content: center;
   margin-left: 6%;
   margin-right: 6%;
-  min-height: 100vh
+  flex-grow: 1;
+  /* min-height: 100vh */
   /* justify-content: space-between */
 }
 
@@ -134,7 +135,6 @@ h1 {
   transition-duration: 100ms;
   transition-property: transform;
   background: #242424;
-  /* h-[50vh] w-[30%] transition-[0.25s] rounded-[4px] border border-solid hover:border-[#646cff] hover:scale-[102%] p-2 overflow-hidden  */
 }
 
 .productListing:hover {
@@ -158,6 +158,14 @@ h1 {
   /* h-[50%] object-contain pt-2 */
 }
 
+
+/* Home */
+
+.homePageContentContainer {
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
 
 
 /* cart */
