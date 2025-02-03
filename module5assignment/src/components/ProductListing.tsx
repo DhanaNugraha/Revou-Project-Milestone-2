@@ -41,7 +41,7 @@ const ProductListing = ({ categoryId, searchProduct = false }: any) => {
 
     if (productFetched?.length > 0) {
       pageContent = productFetched.map((product: any) => {
-        // add ternary here
+        // Skip product if product does not include search parameter
           if (searchProduct && !product.title.toLowerCase().includes(searchProduct.toLowerCase())) {
             return 
           }
