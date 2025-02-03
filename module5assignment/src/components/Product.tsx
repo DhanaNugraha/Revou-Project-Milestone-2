@@ -34,11 +34,9 @@ const Product = ({product}: any) => {
         const cleanProductImageString = productImage.replace(/[['"]+/g, '');
         
         if (cleanProductImageString.startsWith("http://") || cleanProductImageString.startsWith("https://")) {
-            console.log("Here")
             return cleanProductImageString
         }
         else {
-            console.log("Here 2")
             return placeholderImg
         }
     }
