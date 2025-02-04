@@ -21,6 +21,8 @@ const CategoryPage = ({data}:any) => {
 
   const [searchProduct, setSearchProduct] = useState("");
 
+  const [productDisplayedCount, setProductDisplayedCount] = useState(0);
+
   let currentCategory: any = ""
 
   categoryFetched.map((category: any) =>
@@ -54,7 +56,15 @@ const CategoryPage = ({data}:any) => {
 
       <CategoryList data = {data}/>
 
-      <ProductListing categoryId = {router.query.categoryId} searchProduct = {searchProduct} />
+      <p className={"productDisplayedCount"}>
+        { `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`}
+      </p>
+
+      <ProductListing 
+      categoryId = {router.query.categoryId} 
+      searchProduct = {searchProduct} 
+      productDisplayedCount= {productDisplayedCount} 
+      setProductDisplayedCount= {setProductDisplayedCount}/>
 
       <Footer />
     </>

@@ -33,7 +33,7 @@ const CategoryList = ({ data }: any) => {
 
   return (
     <>
-      <div className="flex justify-around pt-[2%] pb-[4%]">
+      <div className="flex justify-around pt-[2%] pb-[2%]">
         <button
             id="categoryAll"
             key="All"
