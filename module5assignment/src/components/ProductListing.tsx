@@ -1,12 +1,19 @@
 import { useState, useEffect } from "react";
 import Product from "./Product";
 
-const ProductListing = ({ categoryId, searchProduct = false }: any) => {
+const ProductListing = ({ categoryId, searchProduct = false, productDisplayedCount,setProductDisplayedCount }: any) => {
   const [productFetched, setProductFetched] = useState<any>([]);
+  
+  let productCount = 0
+
 
   useEffect(() => {
     fetchProduct();
   }, [categoryId]);
+
+  useEffect(() => {
+    setProductDisplayedCount(productCount);
+  }, [searchProduct, productFetched]);
 
   const fetchProduct = async () => {
     try {
@@ -35,26 +42,25 @@ const ProductListing = ({ categoryId, searchProduct = false }: any) => {
     </p>
   );
 
-  // console.log("this is length of prod fetch", productFetched?.length > 0);
-
-  // console.log(productFetched);
-
-    if (productFetched?.length > 0) {
-      pageContent = productFetched.map((product: any) => {
-        // Skip product if product does not include search parameter
-          if (searchProduct && !product.title.toLowerCase().includes(searchProduct.toLowerCase())) {
-            return 
-          }
-          else {
-            return (
-              <Product
-                  key={product.id}
-                  product = {product}
-              />
-            )
-          }
-      })
-    }
+  // Page content updater
+  if (productFetched?.length > 0) {
+    productCount = 0
+    pageContent = productFetched.map((product: any) => {
+      // Skip product if product does not include search parameter
+        if (searchProduct && !product.title.toLowerCase().includes(searchProduct.toLowerCase())) {
+          return 
+        }
+        else {
+          productCount += 1
+          return (
+            <Product
+                key={product.id}
+                product = {product}
+            />
+          )
+        }
+    })
+  }
 
   const content = <div className="productListingContainer">{pageContent}</div>;
 

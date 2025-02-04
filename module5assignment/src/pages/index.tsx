@@ -20,6 +20,10 @@ const Home = ({data}:any) => {
   const categoryFetched = data.slice(0, 5);
 
   const [searchProduct, setSearchProduct] = useState("");
+  const [productDisplayedCount, setProductDisplayedCount] = useState(0);
+
+
+  console.log("Display count", productDisplayedCount)
 
   return (
     <>
@@ -45,7 +49,12 @@ const Home = ({data}:any) => {
 
         <CategoryList data = {data}/>
 
-        <ProductListing categoryId = "All" searchProduct = {searchProduct} />
+        <p>{ `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`
+        // searchProduct === "" ? "" : `for ${searchProduct}` 
+        }
+        </p>
+
+        <ProductListing categoryId = "All" searchProduct = {searchProduct} productDisplayedCount={productDisplayedCount} setProductDisplayedCount={setProductDisplayedCount}/>
         
         <Footer />
       </div>
