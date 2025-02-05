@@ -6,7 +6,6 @@ const ProductListing = ({ categoryId, searchProduct = false, productDisplayedCou
   
   let productCount = 0
 
-
   useEffect(() => {
     fetchProduct();
   }, [categoryId]);

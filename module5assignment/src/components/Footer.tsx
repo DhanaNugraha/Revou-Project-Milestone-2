@@ -15,7 +15,7 @@ const Footer = () => {
 
             <Link className="footerLinks" href="/shoppingcart">Shopping Cart</Link>
 
-            <Link className="footerLinks" href="/">About Us</Link>
+            <Link className="footerLinks" href="/aboutus">About Us</Link>
         </section>
 
         <section className="footerServicesContainer">
