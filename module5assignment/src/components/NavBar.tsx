@@ -39,16 +39,21 @@ const NavBar = () => {
           <img src="\shopping-bag.svg" alt="Shopping Bag" className="w-[3em]"/> 
           <h1 className="text-orange-600">Shop Free</h1>
         </Link>
-        <Link className={checkLocation("/")} href="/">Home</Link>
-        <Link className={checkLocation("/shoppingcart")} href="/shoppingcart"><img src="\cart.svg" alt="Cart"  className="w-[2em]"/></Link>
-        {isLoggedIn ? (
-          <button onClick={handleLogout} className="navbarContentStyling">Logout</button>
-        ) : (
-          <div className="navBarLoginButtons">
-            <Link className={checkLocation("/login")} href="/login">Login</Link>
-            <Link className={checkLocation("/register")} href="/register">Sign Up</Link>
-          </div>
-        )}
+
+        <section className="navbarContentRight">
+          <Link className={checkLocation("/")} href="/">Home</Link>
+
+          <Link className={checkLocation("/shoppingcart")} href="/shoppingcart"><img src="\cart.svg" alt="Cart"  className="w-[2em]"/></Link>
+
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="navbarContentStyling">Logout</button>
+          ) : (
+            <div className="navBarLoginButtons">
+              <Link className={checkLocation("/login")} href="/login">Login</Link>
+              <Link className={checkLocation("/register")} href="/register">Sign Up</Link>
+            </div>
+          )}
+        </section>
       </div>
     </>
   );
