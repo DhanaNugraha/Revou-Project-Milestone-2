@@ -110,7 +110,7 @@ const ProductDetail = ({productFetched, similarProductsFetched}:any) => {
 
   let displayedSimilarProduct = (
     <p data-testid="loading-state">
-      No other similar Products
+      No other similar products
     </p>
   )
   

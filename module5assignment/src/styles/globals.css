@@ -50,7 +50,7 @@ h1 {
   background: #242424;
   position: relative;
   overflow: visible;
-  height: 58px;
+  height: 80px;
 }
 
 .navbarContentRight {
@@ -149,7 +149,7 @@ h1 {
   padding-bottom: 0;
   height: 70vh;
   background: #343434;
-  transform: translate(0, 58px);
+  transform: translate(0, 80px);
   visibility: hidden;
   opacity: 0;
   transition-duration: 0.5s;

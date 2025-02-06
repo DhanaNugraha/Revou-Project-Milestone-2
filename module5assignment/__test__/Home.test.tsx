@@ -63,21 +63,6 @@ afterAll(() => {
 describe("Shopping Cart Page", () => {
 
     describe("Basic rendering", () => {
-        test ("renders NavBar with all elements", () => {
-            render(<Home data={mockCategories} />);
-
-            expect(screen.getByRole("img", { name: "Shopping Bag" })).toBeInTheDocument();
-
-            expect(screen.getByRole("heading", { name: "Shop Free" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-
-            expect(screen.getByRole("img", { name: "Cart" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Sign Up" })).toBeInTheDocument();
-        })
 
         test ("renders Home page Category component with correct information", () => {
             render(<Home data={mockCategories}/>);

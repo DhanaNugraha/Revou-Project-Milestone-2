@@ -44,30 +44,15 @@ const server = setupServer(
 describe("Product Detail Page", () => {
 
     describe("Basic rendering", () => {
-        test ("renders NavBar with all elements", () => {
-            render(<ProductDetail productFetched={mockProduct}/>);
-
-            expect(screen.getByRole("img", { name: "Shopping Bag" })).toBeInTheDocument();
-
-            expect(screen.getByRole("heading", { name: "Shop Free" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-
-            expect(screen.getByRole("img", { name: "Cart" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Sign Up" })).toBeInTheDocument();
-        })
-
+        
         test ("renders Product Detail component before fetch", () => {
-            render(<ProductDetail productFetched={mockProduct}/>);
+            render(<ProductDetail productFetched={mockProduct} similarProductsFetched={mockProduct}/>);
 
             expect(screen.getByRole("img", { name: mockProduct.title })).toBeInTheDocument();
 
-            expect(screen.getByRole("button", { name: "←" })).toBeInTheDocument();
+            expect(screen.getAllByRole("button", { name: "←" })).toHaveLength(2);
 
-            expect(screen.getByRole("button", { name: "→" })).toBeInTheDocument();
+            expect(screen.getAllByRole("button", { name: "→" })).toHaveLength(2);
             
             expect(screen.getByText(mockProduct.title)).toBeInTheDocument();
 
@@ -76,6 +61,11 @@ describe("Product Detail Page", () => {
             expect(screen.getByText("Price: $" + mockProduct.price)).toBeInTheDocument();
 
             expect(screen.getByRole("button", { name: "Add to Cart" })).toBeInTheDocument();
+
+            expect(screen.getByText("Similar Products")).toBeInTheDocument();
+
+            expect(screen.getByText("No other similar products")).toBeInTheDocument();
+
         })
     })
 

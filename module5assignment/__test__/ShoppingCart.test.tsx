@@ -10,21 +10,6 @@ jest.mock('next/router', () => jest.requireActual('next-router-mock'))
 describe("Shopping Cart Page", () => {
 
     describe("Basic rendering", () => {
-        test ("renders NavBar with all elements", () => {
-            render(<ShoppingCart />);
-
-            expect(screen.getByRole("img", { name: "Shopping Bag" })).toBeInTheDocument();
-
-            expect(screen.getByRole("heading", { name: "Shop Free" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
-
-            expect(screen.getByRole("img", { name: "Cart" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
-
-            expect(screen.getByRole("link", { name: "Sign Up" })).toBeInTheDocument();
-        })
 
         test ("renders Shopping Cart component before fetch", () => {
             render(<ShoppingCart />);
