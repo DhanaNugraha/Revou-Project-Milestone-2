@@ -9,6 +9,7 @@ const NavBar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hamburgerClicked, setHamburgerClicked] = useState(false);
 
   useEffect(() => {
     const isLoggedInCheck = Boolean(localStorage.getItem("access_token"));
@@ -30,6 +31,11 @@ const NavBar = () => {
       background: '#666666',
       color: '#FFFFFF',
     },  icon: '👋'});
+  }
+
+  const handleHamburgerClicked = () => {
+    setHamburgerClicked(!hamburgerClicked)
+    console.log(hamburgerClicked)
   }
 
   return (
@@ -54,6 +60,31 @@ const NavBar = () => {
             </div>
           )}
         </section>
+
+        <section className="hamburgerContainer">
+            <input type="checkbox" className="hamburgerCheckbox" id="hamburgerCheckbox" onChange={handleHamburgerClicked}/>
+            <label htmlFor="hamburgerCheckbox">
+                <img src="/hamburger.png" alt="hamburger" className="hamburgerImg hamburgerOpen"/>
+                <img src="/close.png" alt="hamburger" className="hamburgerImg hamburgerClose"/>
+            </label>
+
+            <ul className="hamburgerDirectoryContainer">
+              <Link className={checkLocation("/")} href="/">Home</Link>
+
+              <Link className={checkLocation("/shoppingcart")} href="/shoppingcart"><img src="\cart.svg" alt="Cart"  className="w-[2em]"/></Link>
+
+              {isLoggedIn ? (
+                <button onClick={handleLogout} className="navbarContentStyling">Logout</button>
+              ) : (
+                <>
+                  <Link className={checkLocation("/login")} href="/login">Login</Link>
+
+                  <Link className={checkLocation("/register")} href="/register">Sign Up</Link>
+                </>
+              )}
+            </ul>
+        </section>
+        
       </div>
     </>
   );

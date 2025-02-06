@@ -36,6 +36,8 @@ h1 {
   line-height: 1.1;
 }
 
+/* NavBar */
+
 .navbarContainer {
   display: flex; 
   justify-content: space-between; 
@@ -46,6 +48,9 @@ h1 {
   padding-top: 1%;
   padding-bottom: 1%;
   background: #242424;
+  position: relative;
+  overflow: visible;
+  height: 58px;
 }
 
 .navbarContentRight {
@@ -89,6 +94,77 @@ h1 {
 
 .shopLogoContainer {
   display: flex;
+}
+
+.hamburgerContainer {
+  display: none;
+}
+
+.hamburgerCheckbox {
+  display: none;
+}
+
+.hamburgerCheckbox + label > img{
+  width: 35px;
+  height: 35px;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  background: #e0dada;
+  padding: 4px;
+  border-radius: 100%;
+}
+
+.hamburgerCheckbox + label > img:hover{
+  transform: scale(1.1);
+}
+
+.hamburgerClose {
+  display: none;
+}
+
+.hamburgerCheckbox:checked + label > .hamburgerOpen{
+  display: none;
+}
+
+.hamburgerCheckbox:checked + label > .hamburgerClose{
+  display: block;
+}
+
+.hamburgerDirectoryContainer {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  /* display: grid;
+  grid-template-columns: 100vw;
+  grid-template-rows: repeat(6, 1fr); */
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  top: 0;
+  right: 0;
+  width: cover;
+  padding: 4%;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: 70vh;
+  background: #343434;
+  transform: translate(0, 58px);
+  visibility: hidden;
+  opacity: 0;
+  transition-duration: 0.5s;
+  border-bottom: 1px solid rgb(128, 128, 128, 50%);
+  z-index: 200;
+  box-shadow: -2px 2px 2px 	#646cff;
+}
+
+.hamburgerCheckbox:checked ~ .hamburgerDirectoryContainer {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hamburgerDirectoryContainer > a {
+  text-wrap: nowrap;
 }
 
 
@@ -487,30 +563,6 @@ h1 {
 }
 
 
-/* 
-@media screen and (max-width: 479px) {
-  .shopLogoContainer > h1 {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 480px){
-  .productListing {
-    width: 46%;
-  }
-  .productListingContainer {
-    margin-left: 2%;
-    margin-right: 2%;
-  }
-}
-
-@media screen and (min-width: 740px){
-  .productListing {
-    width: 30%;
-  }} */
-
-
-
 @media screen and (max-width: 768px){
   .productListing {
     width: 46%;
@@ -552,6 +604,12 @@ h1 {
     display: flex;
     flex-flow: column;
     align-items: center;
+  }
+  .hamburgerContainer {
+    display: inline-block;
+  }
+  .navbarContentRight {
+    display: none;
   }
 }
 
