@@ -4,8 +4,9 @@ import "@testing-library/jest-dom";
 import mockRouter from 'next-router-mock'
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import Home from "@/pages";
+import CategoryPage from "@/pages/category/[categoryId]";
 import { mock } from "node:test";
+
 
 // prevent error from next/router
 jest.mock('next/router', () => jest.requireActual('next-router-mock'))
@@ -60,12 +61,12 @@ afterAll(() => {
 }); // Close mock server after all tests
 
 
-describe("Home Page", () => {
+describe("Category Page", () => {
 
     describe("Basic rendering", () => {
 
-        test ("renders Home page Category component with correct information", () => {
-            render(<Home data={mockCategories}/>);
+        test ("renders Category page Category component with correct information", () => {
+            render(<CategoryPage data={mockCategories}/>);
 
             // Check if all category in mockCategories are rendered
             mockCategories.forEach((category) => {
@@ -82,7 +83,7 @@ describe("Home Page", () => {
         })
 
         test("shows loading state initially", () => {
-            render(<Home data={mockCategories} />);
+            render(<CategoryPage data={mockCategories} />);
             expect(screen.getByTestId("loading-state")).toBeInTheDocument();
 
         });
@@ -90,4 +91,4 @@ describe("Home Page", () => {
     })
 })
 
-// npm test Home.test.tsx
+// npm test CategoryPage.test.tsx
