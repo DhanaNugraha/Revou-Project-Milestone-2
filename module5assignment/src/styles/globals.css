@@ -104,11 +104,24 @@ h1 {
   background: #242424;
 }
 
-/* Product count */
-.productDisplayedCount {
-  /* margin : 4%; */
+/* Product Sorting */
+.productSortingContainer {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 2%;
-  padding-left: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.sortProductContainer {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#sortProduct {
+  padding: 0.2rem;
+  border-radius: 4px;
 }
 
 
@@ -403,13 +416,13 @@ h1 {
 
 .aboutUsContent {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 2%;
   flex-grow: 1;
 }
 
 .aboutUsContent > img{
-  max-width: 45vw;
+  max-width: 40vw;
   /* height: 10em; */
   object-fit: contain;
 }

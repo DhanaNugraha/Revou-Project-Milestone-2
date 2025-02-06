@@ -8,6 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import CategoryList from "@/components/CategoryList";
 import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
+import SortProduct from "@/components/SortProduct";
 
 // client side 
 const Home = ({data}:any) => {
@@ -22,6 +23,10 @@ const Home = ({data}:any) => {
   const [searchProduct, setSearchProduct] = useState("");
 
   const [productDisplayedCount, setProductDisplayedCount] = useState(0);
+
+  const [sortValue, setSortValue] = useState("Default");
+
+  // console.log("sort value", sortValue)
 
   return (
     <>
@@ -47,15 +52,21 @@ const Home = ({data}:any) => {
 
         <CategoryList data = {data}/>
 
-        <p className={"productDisplayedCount"}>
-          { `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`}
-        </p>
+        <section className="productSortingContainer">
+          <p className={"productDisplayedCount"}>
+            { `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`}
+          </p>
+
+          <SortProduct 
+          setSortValue = {setSortValue}
+          />          
+        </section>
 
         <ProductListing 
         categoryId = "All" 
         searchProduct = {searchProduct} 
-        productDisplayedCount= {productDisplayedCount} 
-        setProductDisplayedCount= {setProductDisplayedCount}/>
+        setProductDisplayedCount = {setProductDisplayedCount}
+        sortValue = {sortValue}/>
         
         <Footer />
       </div>

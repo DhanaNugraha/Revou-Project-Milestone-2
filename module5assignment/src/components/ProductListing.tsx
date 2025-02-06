@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Product from "./Product";
 
-const ProductListing = ({ categoryId, searchProduct = false, productDisplayedCount,setProductDisplayedCount }: any) => {
+const ProductListing = ({ categoryId, searchProduct = false, setProductDisplayedCount, sortValue }: any) => {
   const [productFetched, setProductFetched] = useState<any>([]);
   
   let productCount = 0
@@ -13,6 +13,27 @@ const ProductListing = ({ categoryId, searchProduct = false, productDisplayedCou
   useEffect(() => {
     setProductDisplayedCount(productCount);
   }, [searchProduct, productFetched]);
+
+  useEffect(() => {
+    switch (sortValue) {
+      case "Default":
+        break;
+      case "Lowest Price":
+        setProductFetched(productFetched.sort((a: any, b: any) => b.price - a.price));
+        break;
+      case "Highest Price":
+        setProductFetched(productFetched.sort((a: any, b: any) => a.price - b.price));
+        break;
+      case "A - Z":
+        setProductFetched(productFetched.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+        break;
+      case "Z - A":
+        setProductFetched(productFetched.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+        break;
+    }
+    console.log("sort value is",sortValue)
+    console.log("sorted product", productFetched)
+  }, [sortValue]);
 
   const fetchProduct = async () => {
     try {
