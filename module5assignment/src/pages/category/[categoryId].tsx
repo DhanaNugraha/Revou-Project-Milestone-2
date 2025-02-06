@@ -8,6 +8,7 @@ import CategoryList from "@/components/CategoryList";
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "@/components/Footer";
 import Searchbar from "@/components/Searchbar";
+import SortProduct from "@/components/SortProduct";
 
 // client side 
 const CategoryPage = ({data}:any) => {
@@ -22,6 +23,8 @@ const CategoryPage = ({data}:any) => {
   const [searchProduct, setSearchProduct] = useState("");
 
   const [productDisplayedCount, setProductDisplayedCount] = useState(0);
+
+  const [sortValue, setSortValue] = useState("Default");
 
   let currentCategory: any = ""
 
@@ -56,15 +59,21 @@ const CategoryPage = ({data}:any) => {
 
       <CategoryList data = {data}/>
 
-      <p className={"productDisplayedCount"}>
-        { `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`}
-      </p>
+      <section className="productSortingContainer">
+        <p className={"productDisplayedCount"}>
+          { `Showing ${productDisplayedCount} products` +  `${searchProduct === "" ? "" : ` for "${searchProduct}" `}`}
+        </p>
+
+        <SortProduct 
+        setSortValue = {setSortValue}
+        />          
+      </section>
 
       <ProductListing 
-      categoryId = {router.query.categoryId} 
+      categoryId = "All" 
       searchProduct = {searchProduct} 
-      productDisplayedCount= {productDisplayedCount} 
-      setProductDisplayedCount= {setProductDisplayedCount}/>
+      setProductDisplayedCount = {setProductDisplayedCount}
+      sortValue = {sortValue}/>
 
       <Footer />
     </>
