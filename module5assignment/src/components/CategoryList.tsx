@@ -59,7 +59,7 @@ const CategoryList = ({ data }: any) => {
 
       <fieldset className="dropdownCategoryListContainer">
         <div className="categoryContainerRight">
-          <label htmlFor="categoryDropdown">Category:</label>
+          <label htmlFor="categoryListDropdown">Category:</label>
 
           <select name="categoryDropdown" defaultValue={"default"} id="categoryListDropdown">
 

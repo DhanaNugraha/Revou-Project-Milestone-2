@@ -52,3 +52,5 @@ describe("Login Page", () => {
         })
     })
 })
+
+// npm test Login.test.tsx

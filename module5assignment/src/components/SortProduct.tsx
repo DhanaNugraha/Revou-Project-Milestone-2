@@ -8,7 +8,7 @@ const SortProduct = ({setSortValue}: any) => {
 
   return (
     <>  <fieldset className="sortProductContainer">
-            <label htmlFor="sortDropdown">Sort By:</label>
+            <label htmlFor="sortProduct">Sort By:</label>
 
             <select name="sortDropdown" defaultValue={"default"} id="sortProduct" onClick={onChangeHandler}>
 

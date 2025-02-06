@@ -72,14 +72,22 @@ describe("Shopping Cart Page", () => {
                 expect(screen.getByRole("button", { name: category.name })).toBeInTheDocument();
             })
 
+            expect(screen.getByLabelText("Category:")).toBeInTheDocument();
+
+            expect(screen.getByLabelText("Sort By:")).toBeInTheDocument();
+
+            expect(screen.getByText("Showing 0 products")).toBeInTheDocument();
+
             // screen.debug()
         })
 
         test("shows loading state initially", () => {
             render(<Home data={mockCategories} />);
             expect(screen.getByTestId("loading-state")).toBeInTheDocument();
+
         });
 
     })
 })
 
+// npm test Home.test.tsx

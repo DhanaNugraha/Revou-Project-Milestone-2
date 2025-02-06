@@ -53,3 +53,5 @@ describe("Register Page", () => {
         })
     })
 })
+
+// npm test Register.test.tsx
