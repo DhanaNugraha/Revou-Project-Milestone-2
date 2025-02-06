@@ -33,7 +33,7 @@ const CategoryList = ({ data }: any) => {
 
   return (
     <>
-      <div className="flex justify-around pt-[2%] pb-[2%]">
+      <div className="flex justify-around pt-[2%] pb-[2%] normalCategoryList">
         <button
             id="categoryAll"
             key="All"
@@ -56,6 +56,38 @@ const CategoryList = ({ data }: any) => {
           </button>
         ))}
       </div>
+
+      <fieldset className="dropdownCategoryListContainer">
+        <div className="categoryContainerRight">
+          <label htmlFor="categoryDropdown">Category:</label>
+
+          <select name="categoryDropdown" defaultValue={"default"} id="categoryListDropdown">
+
+              <option
+                id="categoryAll"
+                key="All"
+                className={router.query.categoryId 
+                    ? CategoryStyling 
+                    : currentCategoryStyling}
+                onClick={() => router.push("/")}
+              >
+                All
+              </option>
+
+              {categoryFetched.map((category: any) => (
+                <option
+                  id={category.id}
+                  key={category.id}
+                  className={checkCurrentCategory(category.id, categoryId)}
+                  onClick={handleClickCategory}
+                >
+                  {category.name}
+                </option>
+              ))}
+
+          </select>
+        </div>
+      </fieldset>
     </>
   );
 };
