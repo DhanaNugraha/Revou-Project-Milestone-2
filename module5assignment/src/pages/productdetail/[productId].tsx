@@ -6,8 +6,10 @@ import Head from "next/head";
 import { GetServerSideProps } from "next";
 import toast, { Toaster } from 'react-hot-toast';
 import Footer from "@/components/Footer";
+import Product from "@/components/Product";
+import { on } from "events";
 
-const ProductDetail = ({productFetched}:any) => {
+const ProductDetail = ({productFetched, similarProductsFetched}:any) => {
   // constants -----------------------------------------------------------------
   // initial fallback value
   const router = useRouter();
@@ -25,15 +27,23 @@ const ProductDetail = ({productFetched}:any) => {
   if (router.query.productId) {
     metaKeyword = `${productFetched.title}, ${productFetched.title.split(" ").join(", ")}, Shop Free, Product, Details, Product Details`
   }
+
+  // console.log(similarProductsFetched)
   
 
   // states --------------------------------------------------------------------
   const [imageFetched, setImageFetched] = useState<any>([placeholderImg]);
+
   const [displayImageNum, setDisplayImageNum] = useState(0);
+
+  const [similarProductsIndex, setSimilarProductsIndex] = useState(0);
+
+  const [similarProductsLength, setSimilarProductsLength] = useState(0);
 
   useEffect(() => {
     if (productFetched) {
       setImageFetched(productFetched.images);
+      setSimilarProductsLength(similarProductsFetched.length);
     }
   }, [productFetched]);
 
@@ -73,6 +83,42 @@ const ProductDetail = ({productFetched}:any) => {
     else {
         return placeholderImg
     }
+  }
+
+  const onSimilarButtonClick = (action: any) => {
+    if (action === "left") {
+      const nextIndex = similarProductsIndex - 1;
+      if (nextIndex < 0) {
+        setSimilarProductsIndex(similarProductsFetched.length - 1);
+      }
+      else {
+        setSimilarProductsIndex(similarProductsIndex - 1);
+      }
+    }
+    else if (action === "right") {
+      const nextIndex = similarProductsIndex + 1;
+      if (nextIndex > similarProductsFetched.length - 1) {
+        setSimilarProductsIndex(0);
+      }
+      else {
+        setSimilarProductsIndex(similarProductsIndex + 1);
+      }
+    }
+  }
+
+  // similar product content
+
+  let displayedSimilarProduct = (
+    <p data-testid="loading-state">
+      No other similar Products
+    </p>
+  )
+  
+  if (similarProductsLength > 0) {
+    console.log(similarProductsFetched.length)
+    displayedSimilarProduct = (
+      <Product product={similarProductsFetched[similarProductsIndex]} />
+    )
   }
 
 
@@ -120,6 +166,20 @@ const ProductDetail = ({productFetched}:any) => {
         </button>
       </div>
 
+      <section className="similarProductsContainer">
+        <h2>Similar Products</h2>
+
+        {displayedSimilarProduct}
+
+        <div className="similarProductsButtonContainer">
+
+          <button onClick={() => onSimilarButtonClick("left")}>←</button>
+
+          <button onClick={() => onSimilarButtonClick("right")}>→</button>
+
+        </div>
+      </section>
+
       <Footer />
     </>
   )
@@ -132,8 +192,15 @@ export const getServerSideProps: GetServerSideProps = (async (context) => {
   if (!context.params) {
     return { props: {} };
   } else {
-    const res = await fetch(`https://api.escuelajs.co/api/v1/products/${context.params.productId}`)
-    const productFetched = await res.json()
-    return { props: { productFetched } }
+    const product = await fetch(`https://api.escuelajs.co/api/v1/products/${context.params.productId}`)
+    const productFetched = await product.json()
+
+    const similarProducts = await fetch(`https://api.escuelajs.co/api/v1/categories/${productFetched.category.id}/products`)
+
+    const similarProductsJson = await similarProducts.json()
+
+    const similarProductsFetched = await similarProductsJson.filter((similarProduct: any) => similarProduct.id !== productFetched.id)
+
+    return { props: { productFetched, similarProductsFetched } }
   }
 })

@@ -332,6 +332,47 @@ h1 {
   margin-bottom: 2%;
 }
 
+.similarProductsContainer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-right: 4%;
+  margin-left: 4%;
+}
+
+.similarProductsContainer > h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 2%;
+}
+
+.similarProductsContainer > div {
+  margin-right: 0;
+}
+
+.similarProductsButtonContainer {
+  width: 33%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.similarProductsButtonContainer > button {
+  background: #80808080;
+  height: 2rem;
+  width: 2rem;
+  padding: 1%;
+  padding-top: 0;
+  border-radius: 100%;
+  transition-duration: 100ms;
+}
+
+.similarProductsButtonContainer > button:hover {
+  transform: scale3d(1.2, 1.2, 1.2);
+  border: 1px solid #646cff;
+  color: #646cff;
+}
+
 
 /* Footer ------------------------------- */
 .footerContainer {
@@ -489,6 +530,9 @@ h1 {
   .aboutUsContentDescription{
     max-width: 90%;
   }
+  /* .similarProductsContainer {
+    width: 46%;
+  } */
 }
 
 @media screen and (max-width: 600px) {

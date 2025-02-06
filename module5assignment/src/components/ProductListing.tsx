@@ -32,8 +32,6 @@ const ProductListing = ({ categoryId, searchProduct = false, setProductDisplayed
         setProductFetched((productFetched: any) => [...productFetched].sort((a: any, b: any) => b.title.localeCompare(a.title)));
         break;
     }
-    console.log("sort value is",sortValue)
-    console.log("sorted product", productFetched)
   }, [sortValue]);
 
   const fetchProduct = async () => {

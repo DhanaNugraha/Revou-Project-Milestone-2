@@ -70,7 +70,7 @@ const CategoryPage = ({data}:any) => {
       </section>
 
       <ProductListing 
-      categoryId = "All" 
+      categoryId = {router.query.categoryId} 
       searchProduct = {searchProduct} 
       setProductDisplayedCount = {setProductDisplayedCount}
       sortValue = {sortValue}/>
