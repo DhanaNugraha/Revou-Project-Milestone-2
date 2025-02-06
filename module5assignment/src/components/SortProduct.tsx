@@ -10,9 +10,9 @@ const SortProduct = ({setSortValue}: any) => {
     <>  <fieldset className="sortProductContainer">
             <label htmlFor="sortDropdown">Sort By:</label>
 
-            <select name="sortDropdown" id="sortProduct" onClick={onChangeHandler}>
+            <select name="sortDropdown" defaultValue={"default"} id="sortProduct" onClick={onChangeHandler}>
 
-                <option value="default" selected disabled>Default</option>
+                <option value="default" disabled>Default</option>
 
                 <option>Lowest Price</option>
 

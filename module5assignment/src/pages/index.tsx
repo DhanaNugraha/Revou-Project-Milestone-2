@@ -26,8 +26,6 @@ const Home = ({data}:any) => {
 
   const [sortValue, setSortValue] = useState("Default");
 
-  // console.log("sort value", sortValue)
-
   return (
     <>
       <Head>

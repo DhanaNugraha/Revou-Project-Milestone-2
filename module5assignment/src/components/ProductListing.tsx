@@ -19,16 +19,17 @@ const ProductListing = ({ categoryId, searchProduct = false, setProductDisplayed
       case "Default":
         break;
       case "Lowest Price":
-        setProductFetched(productFetched.sort((a: any, b: any) => b.price - a.price));
+        // pake spread biar dia bikin copyan
+        setProductFetched((productFetched: any) => [...productFetched].sort((a: any, b: any) => a.price - b.price));
         break;
       case "Highest Price":
-        setProductFetched(productFetched.sort((a: any, b: any) => a.price - b.price));
+        setProductFetched((productFetched: any) => [...productFetched].sort((a: any, b: any) => b.price - a.price));
         break;
       case "A - Z":
-        setProductFetched(productFetched.sort((a: any, b: any) => b.title.localeCompare(a.title)));
+        setProductFetched((productFetched: any) => [...productFetched].sort((a: any, b: any) => a.title.localeCompare(b.title)));
         break;
       case "Z - A":
-        setProductFetched(productFetched.sort((a: any, b: any) => a.title.localeCompare(b.title)));
+        setProductFetched((productFetched: any) => [...productFetched].sort((a: any, b: any) => b.title.localeCompare(a.title)));
         break;
     }
     console.log("sort value is",sortValue)
