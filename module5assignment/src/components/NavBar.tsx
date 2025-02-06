@@ -64,8 +64,8 @@ const NavBar = () => {
         <section className="hamburgerContainer">
             <input type="checkbox" className="hamburgerCheckbox" id="hamburgerCheckbox" onChange={handleHamburgerClicked}/>
             <label htmlFor="hamburgerCheckbox">
-                <img src="/hamburger.png" alt="hamburger" className="hamburgerImg hamburgerOpen"/>
-                <img src="/close.png" alt="hamburger" className="hamburgerImg hamburgerClose"/>
+                <img src="/hamburger.png" alt="hamburger Open" className="hamburgerImg hamburgerOpen"/>
+                <img src="/close.png" alt="hamburger Close" className="hamburgerImg hamburgerClose"/>
             </label>
 
             <ul className="hamburgerDirectoryContainer">

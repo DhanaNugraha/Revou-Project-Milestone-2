@@ -19,13 +19,18 @@ describe("Navbar Component", () => {
 
             expect(screen.getByRole("heading", { name: "Shop Free" })).toBeInTheDocument();
 
-            expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
+            expect(screen.getAllByRole("link", { name: "Home" })).toHaveLength(2);
 
-            expect(screen.getByRole("img", { name: "Cart" })).toBeInTheDocument();
+            expect(screen.getAllByRole("img", { name: "Cart" })).toHaveLength(2);
 
-            expect(screen.getByRole("link", { name: "Login" })).toBeInTheDocument();
+            expect(screen.getAllByRole("link", { name: "Login" })).toHaveLength(2);
 
-            expect(screen.getByRole("link", { name: "Sign Up" })).toBeInTheDocument();
+            expect(screen.getAllByRole("link", { name: "Sign Up" })).toHaveLength(2);
+
+            expect(screen.getByRole("img", { name: "hamburger Open" })).toBeInTheDocument();
+
+            expect(screen.getByRole("img", { name: "hamburger Close" })).toBeInTheDocument();
+
         })     
     })
 
