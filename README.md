@@ -1,5 +1,5 @@
 # Online Shop Website
-[Online Shop](https://pet-shop-revou-module-2-assignment.site/) is a website that was created using React for building the UI components. This website was made to display item listings of various products with different categories to choose from. The items displayed in this website was fetched from [Online Store API](https://fakeapi.platzi.com/en/about/introduction/)
+[Online Shop](https://shopfreerevou.netlify.app/) is a website that was created using React for building the UI components. This website was made to display item listings of various products with different categories to choose from. The items displayed in this website was fetched from [Online Store API](https://fakeapi.platzi.com/en/about/introduction/)
 
 
 ## Table of Contents
