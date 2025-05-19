@@ -1,5 +1,5 @@
-# Online Shop Website
-[Online Shop](https://shopfreerevou.netlify.app/) is a website that was created using React for building the UI components. This website was made to display item listings of various products with different categories to choose from. The items displayed in this website was fetched from [Online Store API](https://fakeapi.platzi.com/en/about/introduction/)
+# Shop Free
+[Shop Free](https://shopfreerevou.netlify.app/) is an online shop website that was created using React for building the UI components. This website was made to display item listings of various products with different categories to choose from. The items displayed in this website was fetched from [Online Store API](https://fakeapi.platzi.com/en/about/introduction/)
 
 
 ## Table of Contents
